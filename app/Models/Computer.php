@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasUserTrait;
 use JJG\Ping;
 use Orchestra\Support\Facades\HTML;
-use App\Models\Traits\HasUserTrait;
 
 class Computer extends Model
 {
@@ -111,9 +111,8 @@ class Computer extends Model
             return sprintf('%s %s', $os, $version);
         }
 
-        return null;
+        return;
     }
-
 
     /**
      * Returns all access checks.
@@ -225,7 +224,7 @@ class Computer extends Model
     private function createCheck($bool = false, $text = '')
     {
         if ($bool) {
-            $check =  HTML::create('i', '', ['class' => 'fa fa-check']);
+            $check = HTML::create('i', '', ['class' => 'fa fa-check']);
 
             return HTML::raw("<span class='label label-success'>$check $text</span>");
         } else {

@@ -3,7 +3,7 @@
 use Rhumsaa\Uuid\Uuid;
 
 /**
- * Generates a session flash message
+ * Generates a session flash message.
  *
  * @param null|string $title
  * @param null|string $message
@@ -14,7 +14,7 @@ function flash($title = null, $message = null)
 {
     $flash = new \App\Http\Flash();
 
-    if(func_num_args() === 0) {
+    if (func_num_args() === 0) {
         return $flash;
     }
 

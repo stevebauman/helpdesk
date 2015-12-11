@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Models\PasswordFolder;
+use Closure;
 use Illuminate\Http\Request;
 
 class PasswordFolderLocked
@@ -35,14 +35,14 @@ class PasswordFolderLocked
     {
         $folder = auth()->user()->load('passwordFolder')->passwordFolder;
 
-        if($folder instanceof PasswordFolder && $request->session()->has($folder->uuid)) {
+        if ($folder instanceof PasswordFolder && $request->session()->has($folder->uuid)) {
             // Triple check here that the session UUID key contains
             // the value of the exact UUID as well
             if ($request->session()->get($folder->uuid) === $folder->uuid) {
                 // User passes all checks. Allow them into the password folder.
                 return $next($request);
             }
-        } else if (!$folder) {
+        } elseif (!$folder) {
             // If no folder exists for the user, we need
             // to redirect them to the setup page.
             return redirect()->route('passwords.setup');

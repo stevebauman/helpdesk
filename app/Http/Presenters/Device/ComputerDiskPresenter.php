@@ -2,10 +2,10 @@
 
 namespace App\Http\Presenters\Device;
 
+use App\Http\Presenters\Presenter;
+use App\Models\Computer;
 use App\Models\ComputerHardDisk;
 use Orchestra\Html\Table\Grid as TableGrid;
-use App\Models\Computer;
-use App\Http\Presenters\Presenter;
 
 class ComputerDiskPresenter extends Presenter
 {
@@ -18,31 +18,25 @@ class ComputerDiskPresenter extends Presenter
      */
     public function disks(Computer $computer)
     {
-        return $this->table->of('computers.disks', function (TableGrid $table) use ($computer)
-        {
+        return $this->table->of('computers.disks', function (TableGrid $table) use ($computer) {
             $table->with($computer->disks()->getQuery());
 
             $table->attributes('class', 'table table-hover');
 
-            $table->column('name', function ($column)
-            {
+            $table->column('name', function ($column) {
                 $column->label = 'Name';
             });
 
-            $table->column('size', function ($column)
-            {
+            $table->column('size', function ($column) {
                 $column->label = 'Size';
-                $column->value = function (ComputerHardDisk $disk)
-                {
+                $column->value = function (ComputerHardDisk $disk) {
                     return $disk->getSizeReadable();
                 };
             });
 
-            $table->column('used', function ($column)
-            {
+            $table->column('used', function ($column) {
                 $column->label = 'Used';
-                $column->value = function (ComputerHardDisk $disk)
-                {
+                $column->value = function (ComputerHardDisk $disk) {
                     return $disk->getPercentUsedProgressBar();
                 };
             });

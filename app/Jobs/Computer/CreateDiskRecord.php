@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Computer;
 
-use App\Models\ComputerHardDisk;
 use App\Jobs\Job;
+use App\Models\ComputerHardDisk;
 use App\Models\ComputerHardDiskRecord;
 use Illuminate\Contracts\Bus\SelfHandling;
 

@@ -2,13 +2,13 @@
 
 namespace App\Http\Presenters\Device;
 
+use App\Http\Presenters\Presenter;
+use App\Models\Computer;
+use App\Models\ComputerType;
+use App\Models\OperatingSystem;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
-use App\Models\OperatingSystem;
-use App\Models\ComputerType;
-use App\Models\Computer;
-use App\Http\Presenters\Presenter;
 
 class ComputerPresenter extends Presenter
 {
@@ -21,8 +21,7 @@ class ComputerPresenter extends Presenter
      */
     public function table(Computer $computer)
     {
-        return $this->table->of('computers', function (TableGrid $table) use ($computer)
-        {
+        return $this->table->of('computers', function (TableGrid $table) use ($computer) {
             $table->with($computer)->paginate($this->perPage);
 
             $table->attributes('class', 'table table-hover');
@@ -37,38 +36,30 @@ class ComputerPresenter extends Presenter
                 'description',
             ]);
 
-            $table->column('name', function ($column)
-            {
+            $table->column('name', function ($column) {
                 $column->label = 'Name';
-                $column->value = function (Computer $computer)
-                {
+                $column->value = function (Computer $computer) {
                     return link_to_route('devices.computers.show', $computer->name, [$computer->getKey()]);
                 };
             });
 
-            $table->column('access', function ($column)
-            {
+            $table->column('access', function ($column) {
                 $column->label = 'Access';
-                $column->value = function (Computer $computer)
-                {
+                $column->value = function (Computer $computer) {
                     return $computer->getAccessChecks();
                 };
             });
 
-            $table->column('description', function ($column)
-            {
+            $table->column('description', function ($column) {
                 $column->label = 'Description';
-                $column->value = function (Computer $computer)
-                {
+                $column->value = function (Computer $computer) {
                     return $computer->description;
                 };
             });
 
-            $table->column('os', function ($column)
-            {
+            $table->column('os', function ($column) {
                 $column->label = 'Operating System';
-                $column->value = function (Computer $computer)
-                {
+                $column->value = function (Computer $computer) {
                     return $computer->getCompleteOs();
                 };
             });
@@ -84,12 +75,11 @@ class ComputerPresenter extends Presenter
      */
     public function form(Computer $computer)
     {
-        return $this->form->of('computers', function (FormGrid $form) use ($computer)
-        {
+        return $this->form->of('computers', function (FormGrid $form) use ($computer) {
             $operatingSystems = OperatingSystem::lists('name', 'id');
             $types = ComputerType::lists('name', 'id');
 
-            if($computer->exists) {
+            if ($computer->exists) {
                 $form->setup($this, route('devices.computers.update', [$computer->getKey()]), $computer, [
                     'method' => 'PATCH',
                 ]);
@@ -103,8 +93,7 @@ class ComputerPresenter extends Presenter
                 $form->submit = 'Create';
             }
 
-            $form->fieldset(function (Fieldset $fieldset) use ($computer, $operatingSystems, $types)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($computer, $operatingSystems, $types) {
                 // The computer name text field
                 $fieldset->control('input:text', 'name')
                     ->label('Name')
@@ -114,14 +103,13 @@ class ComputerPresenter extends Presenter
                 $fieldset->control('select', 'os')
                     ->label('Operating System')
                     ->options($operatingSystems)
-                    ->value(function(Computer $computer)
-                    {
+                    ->value(function (Computer $computer) {
                         if ($computer->os instanceof OperatingSystem) {
                             return $computer->os->getKey();
                         }
                     })
                     ->attributes([
-                        'class' => 'form-control',
+                        'class'       => 'form-control',
                         'placeholder' => 'Select An Operating System',
                     ]);
 
@@ -129,14 +117,13 @@ class ComputerPresenter extends Presenter
                 $fieldset->control('select', 'type')
                     ->label('Type')
                     ->options($types)
-                    ->value(function(Computer $computer)
-                    {
+                    ->value(function (Computer $computer) {
                         if ($computer->type instanceof ComputerType) {
                             return $computer->type->getKey();
                         }
                     })
                     ->attributes([
-                        'class' => 'form-control',
+                        'class'       => 'form-control',
                         'placeholder' => 'Select a Type',
                     ]);
 
@@ -175,12 +162,12 @@ class ComputerPresenter extends Presenter
     public function navbar()
     {
         return $this->fluent([
-            'id'    => 'computers',
-            'title' => 'Computers',
-            'url'   => route('devices.computers.index'),
-            'menu'  => view('pages.devices.computers._nav'),
+            'id'         => 'computers',
+            'title'      => 'Computers',
+            'url'        => route('devices.computers.index'),
+            'menu'       => view('pages.devices.computers._nav'),
             'attributes' => [
-                'class' => 'navbar-default'
+                'class' => 'navbar-default',
             ],
         ]);
     }

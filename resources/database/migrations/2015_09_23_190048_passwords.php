@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Passwords extends Migration
 {
@@ -12,8 +12,7 @@ class Passwords extends Migration
      */
     public function up()
     {
-        Schema::create('password_folders', function(Blueprint $table)
-        {
+        Schema::create('password_folders', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned();
@@ -27,8 +26,7 @@ class Passwords extends Migration
             $table->unique(['user_id']);
         });
 
-        Schema::create('passwords', function(Blueprint $table)
-        {
+        Schema::create('passwords', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('folder_id')->unsigned();

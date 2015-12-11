@@ -2,9 +2,9 @@
 
 namespace App\Jobs\ActiveDirectory;
 
+use Adldap\Contracts\Adldap;
 use Adldap\Models\Computer;
 use App\Jobs\Job;
-use Adldap\Contracts\Adldap;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class CheckComputerExists extends Job implements SelfHandling

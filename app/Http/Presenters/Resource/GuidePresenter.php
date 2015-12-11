@@ -2,12 +2,12 @@
 
 namespace App\Http\Presenters\Resource;
 
+use App\Http\Presenters\Presenter;
+use App\Models\Guide;
 use App\Models\GuideStep;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
-use App\Models\Guide;
-use App\Http\Presenters\Presenter;
 
 class GuidePresenter extends Presenter
 {
@@ -22,8 +22,7 @@ class GuidePresenter extends Presenter
     {
         $guide = $guide->query()->latest();
 
-        return $this->table->of('resources.guides', function (TableGrid $table) use ($guide)
-        {
+        return $this->table->of('resources.guides', function (TableGrid $table) use ($guide) {
             $table->with($guide)->paginate($this->perPage);
 
             $table->searchable([
@@ -69,8 +68,7 @@ class GuidePresenter extends Presenter
      */
     public function form(Guide $guide)
     {
-        return $this->form->of('resources.guides', function (FormGrid $form) use ($guide)
-        {
+        return $this->form->of('resources.guides', function (FormGrid $form) use ($guide) {
             if ($guide->exists) {
                 $route = route('resources.guides.update', [$guide->getSlug()]);
                 $method = 'PATCH';
@@ -85,16 +83,15 @@ class GuidePresenter extends Presenter
 
             $form->setup($this, $route, $guide, compact('method'));
 
-            $form->fieldset(function (Fieldset $fieldset) use ($guide)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($guide) {
                 $fieldset
                     ->control('input:text', 'title')
                     ->attributes([
-                        'class' => 'slug',
-                        'placeholder' => 'Enter the guide title',
+                        'class'           => 'slug',
+                        'placeholder'     => 'Enter the guide title',
                         'data-slug-field' => '#slug',
                     ])->value(function (Guide $guide) {
-                        return ($guide->exists ? $guide->title : 'How To:');
+                        return $guide->exists ? $guide->title : 'How To:';
                     });
 
                 $fieldset
@@ -102,13 +99,13 @@ class GuidePresenter extends Presenter
                     ->attributes([
                         'placeholder' => 'Enter the guide slug',
                     ])->value(function (Guide $guide) {
-                        return ($guide->exists ? $guide->getSlug() : 'how-to');
+                        return $guide->exists ? $guide->getSlug() : 'how-to';
                     });
 
                 $fieldset
                     ->control('input:textarea', 'description')
                     ->attributes([
-                        'placeholder' => 'Enter the guide description',
+                        'placeholder'  => 'Enter the guide description',
                         'data-provide' => 'markdown',
                     ]);
 
@@ -116,7 +113,7 @@ class GuidePresenter extends Presenter
                     ->control('input:checkbox', 'publish')
                     ->attributes([
                         'class' => 'switch-mark',
-                        ($guide->published ? 'checked' : null)
+                        ($guide->published ? 'checked' : null),
                     ])
                     ->value(1);
             });
@@ -145,12 +142,12 @@ class GuidePresenter extends Presenter
     public function navbar()
     {
         return $this->fluent([
-            'id'    => 'guides',
-            'title' => 'Guides',
-            'url'   => route('resources.guides.index'),
-            'menu'  => view('pages.resources.guides._nav'),
+            'id'         => 'guides',
+            'title'      => 'Guides',
+            'url'        => route('resources.guides.index'),
+            'menu'       => view('pages.resources.guides._nav'),
             'attributes' => [
-                'class' => 'navbar-default'
+                'class' => 'navbar-default',
             ],
         ]);
     }
@@ -158,17 +155,17 @@ class GuidePresenter extends Presenter
     /**
      * Returns a new navbar for the guide step show page.
      *
-     * @param Guide     $guide
+     * @param Guide $guide
      *
      * @return \Illuminate\Support\Fluent
      */
     public function navbarShow(Guide $guide)
     {
         return $this->fluent([
-            'id'    => 'guide-steps-show',
-            'title' => 'Actions',
-            'url'   => route('resources.guides.show', [$guide->getSlug()]),
-            'menu'  => view('pages.resources.guides._nav-show', compact('guide')),
+            'id'         => 'guide-steps-show',
+            'title'      => 'Actions',
+            'url'        => route('resources.guides.show', [$guide->getSlug()]),
+            'menu'       => view('pages.resources.guides._nav-show', compact('guide')),
             'attributes' => [
                 'class' => 'navbar-default',
             ],

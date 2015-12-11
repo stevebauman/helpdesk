@@ -2,13 +2,13 @@
 
 namespace App\Processors\PasswordFolder;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Guard;
-use App\Http\Requests\PasswordFolder\PasswordRequest;
 use App\Http\Presenters\PasswordFolder\PasswordPresenter;
+use App\Http\Requests\PasswordFolder\PasswordRequest;
 use App\Models\Password;
 use App\Models\PasswordFolder;
 use App\Processors\Processor;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Guard;
 
 class PasswordProcessor extends Processor
 {
@@ -178,11 +178,11 @@ class PasswordProcessor extends Processor
             if ($folder instanceof PasswordFolder) {
                 $password = $folder->passwords()->findOrFail($id);
 
-                $password->title    = $request->input('title', $password->title);
-                $password->website  = $request->input('website', $password->website);
+                $password->title = $request->input('title', $password->title);
+                $password->website = $request->input('website', $password->website);
                 $password->username = $request->input('username', $password->username);
                 $password->password = $request->input('password', $password->password);
-                $password->notes    = $request->input('notes', $password->notes);
+                $password->notes = $request->input('notes', $password->notes);
 
                 if ($password->save()) {
                     return $password;

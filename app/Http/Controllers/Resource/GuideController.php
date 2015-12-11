@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Resource;
 
-use App\Models\Guide;
-use App\Http\Requests\Resource\GuideRequest;
-use App\Processors\Resource\GuideProcessor;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Resource\GuideRequest;
+use App\Models\Guide;
+use App\Processors\Resource\GuideProcessor;
 
 class GuideController extends Controller
 {
@@ -93,8 +93,8 @@ class GuideController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  GuideRequest $request
-     * @param  int|string   $id
+     * @param GuideRequest $request
+     * @param int|string   $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */

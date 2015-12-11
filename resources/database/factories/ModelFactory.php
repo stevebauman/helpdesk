@@ -11,11 +11,11 @@
 |
 */
 
-use Faker\Generator;
-use App\Models\User;
 use App\Models\Issue;
-use App\Models\PasswordFolder;
 use App\Models\Password;
+use App\Models\PasswordFolder;
+use App\Models\User;
+use Faker\Generator;
 
 $factory[User::class] = function (Generator $faker) {
     return [

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateComputerTables extends Migration
 {
@@ -12,8 +12,7 @@ class CreateComputerTables extends Migration
      */
     public function up()
     {
-        Schema::create('software', function(Blueprint $table)
-        {
+        Schema::create('software', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned()->nullable();
@@ -23,8 +22,7 @@ class CreateComputerTables extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::create('operating_systems', function(Blueprint $table)
-        {
+        Schema::create('operating_systems', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned()->nullable();
@@ -35,8 +33,7 @@ class CreateComputerTables extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::create('computer_types', function(Blueprint $table)
-        {
+        Schema::create('computer_types', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned()->nullable();
@@ -45,8 +42,7 @@ class CreateComputerTables extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::create('computers', function(Blueprint $table)
-        {
+        Schema::create('computers', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned()->nullable();
@@ -62,8 +58,7 @@ class CreateComputerTables extends Migration
             $table->foreign('os_id')->references('id')->on('operating_systems');
         });
 
-        Schema::create('computer_access', function (Blueprint $table)
-        {
+        Schema::create('computer_access', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('computer_id')->unsigned()->nullable();
@@ -75,8 +70,7 @@ class CreateComputerTables extends Migration
             $table->foreign('computer_id')->references('id')->on('computers');
         });
 
-        Schema::create('computer_users', function(Blueprint $table)
-        {
+        Schema::create('computer_users', function (Blueprint $table) {
             $table->integer('computer_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
@@ -84,8 +78,7 @@ class CreateComputerTables extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::create('computer_software', function(Blueprint $table)
-        {
+        Schema::create('computer_software', function (Blueprint $table) {
             $table->integer('computer_id')->unsigned();
             $table->integer('software_id')->unsigned();
 
@@ -93,8 +86,7 @@ class CreateComputerTables extends Migration
             $table->foreign('software_id')->references('id')->on('software');
         });
 
-        Schema::create('computer_processors', function(Blueprint $table)
-        {
+        Schema::create('computer_processors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('computer_id')->unsigned();
             $table->string('name');
@@ -105,8 +97,7 @@ class CreateComputerTables extends Migration
             $table->foreign('computer_id')->references('id')->on('computers');
         });
 
-        Schema::create('computer_processor_records', function(Blueprint $table)
-        {
+        Schema::create('computer_processor_records', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('processor_id')->unsigned();
             $table->integer('load');
@@ -115,8 +106,7 @@ class CreateComputerTables extends Migration
             $table->foreign('processor_id')->references('id')->on('computer_processors');
         });
 
-        Schema::create('computer_hard_disks', function(Blueprint $table)
-        {
+        Schema::create('computer_hard_disks', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('computer_id')->unsigned();
@@ -128,8 +118,7 @@ class CreateComputerTables extends Migration
             $table->foreign('computer_id')->references('id')->on('computers');
         });
 
-        Schema::create('computer_hard_disk_records', function(Blueprint $table)
-        {
+        Schema::create('computer_hard_disk_records', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('disk_id')->unsigned();
@@ -139,8 +128,7 @@ class CreateComputerTables extends Migration
             $table->foreign('disk_id')->references('id')->on('computer_hard_disks');
         });
 
-        Schema::create('computer_status_records', function(Blueprint $table)
-        {
+        Schema::create('computer_status_records', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('computer_id')->unsigned();

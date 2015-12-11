@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Device;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Device\ComputerRequest;
 use App\Models\Computer;
 use App\Processors\Device\ComputerProcessor;
-use App\Http\Controllers\Controller;
 
 class ComputerController extends Controller
 {
@@ -47,7 +47,7 @@ class ComputerController extends Controller
     /**
      * Creates a computer.
      *
-     * @param  ComputerRequest $request
+     * @param ComputerRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -81,7 +81,8 @@ class ComputerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)

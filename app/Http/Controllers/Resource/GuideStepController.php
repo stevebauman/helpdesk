@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Resource;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Resource\GuideStepImagesRequest;
 use App\Http\Requests\Resource\GuideStepMoveRequest;
-use App\Processors\Resource\GuideStepProcessor;
 use App\Http\Requests\Resource\GuideStepRequest;
-use App\Http\Controllers\Controller;
+use App\Processors\Resource\GuideStepProcessor;
 
 class GuideStepController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Device;
 
-use App\Processors\Device\ComputerDiskProcessor;
 use App\Http\Controllers\Controller;
+use App\Processors\Device\ComputerDiskProcessor;
 
 class ComputerDiskController extends Controller
 {

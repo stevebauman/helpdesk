@@ -2,16 +2,16 @@
 
 namespace App\Processors\ActiveDirectory;
 
-use Adldap\Objects\AccountControl;
-use Illuminate\Http\Request;
-use Adldap\Models\User;
 use Adldap\Contracts\Adldap;
+use Adldap\Models\User;
+use Adldap\Objects\AccountControl;
 use Adldap\Schemas\ActiveDirectory;
-use App\Jobs\ActiveDirectory\ImportUser;
-use App\Http\Requests\ActiveDirectory\UserRequest;
-use App\Http\Requests\ActiveDirectory\UserImportRequest;
 use App\Http\Presenters\ActiveDirectory\UserPresenter;
+use App\Http\Requests\ActiveDirectory\UserImportRequest;
+use App\Http\Requests\ActiveDirectory\UserRequest;
+use App\Jobs\ActiveDirectory\ImportUser;
 use App\Processors\Processor;
+use Illuminate\Http\Request;
 
 class UserProcessor extends Processor
 {

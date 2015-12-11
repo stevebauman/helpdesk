@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use App\Models\Issue;
+use App\Models\User;
 
 class IssuePolicy extends Policy
 {
@@ -103,7 +103,7 @@ class IssuePolicy extends Policy
      *
      * Only administrators can re-open issues.
      *
-     * @param User  $user
+     * @param User $user
      *
      * @return bool
      */

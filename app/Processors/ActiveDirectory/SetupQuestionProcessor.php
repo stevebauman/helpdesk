@@ -2,13 +2,13 @@
 
 namespace App\Processors\ActiveDirectory;
 
-use App\Http\Requests\ActiveDirectory\SetupQuestionRequest;
-use Illuminate\Contracts\Encryption\Encrypter;
-use Illuminate\Contracts\Auth\Guard;
 use App\Http\Presenters\ActiveDirectory\SetupQuestionPresenter;
-use App\Models\User;
+use App\Http\Requests\ActiveDirectory\SetupQuestionRequest;
 use App\Models\Question;
+use App\Models\User;
 use App\Processors\Processor;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Encryption\Encrypter;
 
 class SetupQuestionProcessor extends Processor
 {
@@ -72,7 +72,7 @@ class SetupQuestionProcessor extends Processor
     }
 
     /**
-     * Displays the users security question
+     * Displays the users security question.
      *
      * @param int|string $id
      *

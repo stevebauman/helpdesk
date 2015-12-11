@@ -2,13 +2,13 @@
 
 namespace App\Processors\PasswordFolder;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Guard;
+use App\Http\Presenters\PasswordFolder\GatePresenter;
 use App\Http\Requests\PasswordFolder\LockRequest;
 use App\Http\Requests\PasswordFolder\UnlockRequest;
-use App\Http\Presenters\PasswordFolder\GatePresenter;
 use App\Models\PasswordFolder;
 use App\Processors\Processor;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Guard;
 
 class GateProcessor extends Processor
 {
@@ -25,8 +25,8 @@ class GateProcessor extends Processor
     /**
      * Constructor.
      *
-     * @param GatePresenter  $presenter
-     * @param Guard          $guard
+     * @param GatePresenter $presenter
+     * @param Guard         $guard
      */
     public function __construct(GatePresenter $presenter, Guard $guard)
     {
@@ -67,7 +67,6 @@ class GateProcessor extends Processor
 
         return false;
     }
-
 
     /**
      * Locks a users password folder.

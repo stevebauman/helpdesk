@@ -2,10 +2,9 @@
 
 namespace App\Http\Presenters\PasswordFolder;
 
-use App\Models\PasswordFolder;
+use App\Http\Presenters\Presenter;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Html\Form\Grid as FormGrid;
-use App\Http\Presenters\Presenter;
 
 class PinPresenter extends Presenter
 {
@@ -16,10 +15,9 @@ class PinPresenter extends Presenter
      */
     public function form()
     {
-        return $this->form->of('passwords.change-pin', function(FormGrid $form)
-        {
+        return $this->form->of('passwords.change-pin', function (FormGrid $form) {
             $form->attributes([
-                'url' => route('passwords.pin.update'),
+                'url'    => route('passwords.pin.update'),
                 'method' => 'POST',
             ]);
 
@@ -27,8 +25,7 @@ class PinPresenter extends Presenter
 
             $form->submit = 'Change';
 
-            $form->fieldset(function (Fieldset $fieldset)
-            {
+            $form->fieldset(function (Fieldset $fieldset) {
                 $fieldset->control('input:password', 'pin')
                     ->label('PIN')
                     ->attributes(['placeholder' => 'Enter your Current PIN']);

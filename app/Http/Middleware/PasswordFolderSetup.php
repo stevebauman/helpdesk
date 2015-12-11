@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Models\PasswordFolder;
+use Closure;
 use Illuminate\Http\Request;
 
 class PasswordFolderSetup
@@ -35,7 +35,7 @@ class PasswordFolderSetup
     {
         $folder = $this->folder->where('user_id', auth()->user()->getKey())->first();
 
-        if($folder instanceof PasswordFolder) {
+        if ($folder instanceof PasswordFolder) {
             // If a folder already exists, the user is trying to access
             // setup again. We'll redirect them to an 'invalid' page.
             return redirect()->route('passwords.setup.invalid');

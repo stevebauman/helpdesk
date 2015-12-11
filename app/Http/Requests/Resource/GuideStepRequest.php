@@ -14,8 +14,8 @@ class GuideStepRequest extends Request
     public function rules()
     {
         return [
-            'image' => 'image',
-            'title' => 'required|min:5',
+            'image'       => 'image',
+            'title'       => 'required|min:5',
             'description' => 'min:5',
         ];
     }

@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Orchestra\Model\Role;
 use Orchestra\Authorization\Policy as AuthorizationPolicy;
+use Orchestra\Model\Role;
 
 abstract class Policy extends AuthorizationPolicy
 {

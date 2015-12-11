@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddUserTokenFields extends Migration
 {
@@ -12,8 +12,7 @@ class AddUserTokenFields extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table)
-        {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('forgot_token')->nullable();
             $table->string('reset_token')->nullable();
         });
@@ -26,8 +25,7 @@ class AddUserTokenFields extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table)
-        {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('forgot_token');
             $table->dropColumn('reset_token');
         });

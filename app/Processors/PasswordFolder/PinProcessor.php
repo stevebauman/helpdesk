@@ -24,8 +24,8 @@ class PinProcessor extends Processor
     /**
      * Constructor.
      *
-     * @param PinPresenter   $presenter
-     * @param Guard          $guard
+     * @param PinPresenter $presenter
+     * @param Guard        $guard
      */
     public function __construct(PinPresenter $presenter, Guard $guard)
     {

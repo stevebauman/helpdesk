@@ -2,11 +2,11 @@
 
 namespace App\Jobs\Com\Computer;
 
-use App\Models\Computer;
 use App\Jobs\Job;
+use App\Models\Computer;
+use Illuminate\Contracts\Bus\SelfHandling;
 use Stevebauman\Wmi\Schemas\Namespaces;
 use Stevebauman\Wmi\Wmi;
-use Illuminate\Contracts\Bus\SelfHandling;
 
 class CheckConnectivity extends Job implements SelfHandling
 {

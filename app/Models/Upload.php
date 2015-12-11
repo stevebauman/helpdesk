@@ -36,7 +36,6 @@ class Upload extends Model
         return $this->morphTo();
     }
 
-
     /**
      * Returns the complete file path of the upload.
      *
@@ -46,7 +45,7 @@ class Upload extends Model
     {
         $storage = config('filesystems.disks.local.root');
 
-        return $storage . DIRECTORY_SEPARATOR . $this->path;
+        return $storage.DIRECTORY_SEPARATOR.$this->path;
     }
 
     /**
@@ -78,6 +77,6 @@ class Upload extends Model
 
         $bytes /= pow(1024, $pow);
 
-        return round($bytes, 2) . ' ' . $units[$pow];
+        return round($bytes, 2).' '.$units[$pow];
     }
 }

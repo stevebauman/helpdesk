@@ -3,10 +3,10 @@
 namespace App\Http\Presenters;
 
 use App\Models\Label;
-use Orchestra\Support\Facades\HTML;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
+use Orchestra\Support\Facades\HTML;
 
 class LabelPresenter extends Presenter
 {
@@ -49,8 +49,7 @@ class LabelPresenter extends Presenter
      */
     public function form(Label $label)
     {
-        return $this->form->of('label', function (FormGrid $form) use ($label)
-        {
+        return $this->form->of('label', function (FormGrid $form) use ($label) {
             if ($label->exists) {
                 $form->setup($this, route('labels.update', [$label->getKey()]), $label, [
                     'method' => 'PATCH',
@@ -73,8 +72,7 @@ class LabelPresenter extends Presenter
                 $options[$color] = HTML::create('span', ucfirst($color), ['class' => "label label-$color"]);
             }
 
-            $form->fieldset(function (Fieldset $fieldset) use ($options)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($options) {
                 $fieldset->control('input:text', 'name')
                     ->label('Name')
                     ->attributes(['placeholder' => 'Name']);
@@ -86,8 +84,8 @@ class LabelPresenter extends Presenter
                         return $label->color;
                     })
                     ->attributes([
-                        'class' => 'select-label-color',
-                        'placeholder' => 'Select a color'
+                        'class'       => 'select-label-color',
+                        'placeholder' => 'Select a color',
                     ]);
             });
         });
@@ -101,12 +99,12 @@ class LabelPresenter extends Presenter
     public function navbar()
     {
         return $this->fluent([
-            'id'    => 'labels',
-            'title' => 'Labels',
-            'url'   => route('labels.index'),
-            'menu'  => view('pages.labels._nav'),
+            'id'         => 'labels',
+            'title'      => 'Labels',
+            'url'        => route('labels.index'),
+            'menu'       => view('pages.labels._nav'),
             'attributes' => [
-                'class' => 'navbar-default'
+                'class' => 'navbar-default',
             ],
         ]);
     }

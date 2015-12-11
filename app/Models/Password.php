@@ -50,7 +50,7 @@ class Password extends Model
 
         $user = $folder->user;
 
-        $key = $user->getKey() . config('app.key') . $folder->pin;
+        $key = $user->getKey().config('app.key').$folder->pin;
 
         return substr($key, 0, 32);
     }
@@ -114,9 +114,11 @@ class Password extends Model
      */
     public function getTitleAttribute($title)
     {
-        if (!is_null($title)) return $this->decrypt($title);
+        if (!is_null($title)) {
+            return $this->decrypt($title);
+        }
 
-        return null;
+        return;
     }
 
     /**
@@ -128,9 +130,11 @@ class Password extends Model
      */
     public function getWebsiteAttribute($website)
     {
-        if (!is_null($website)) return $this->decrypt($website);
+        if (!is_null($website)) {
+            return $this->decrypt($website);
+        }
 
-        return null;
+        return;
     }
 
     /**
@@ -142,9 +146,11 @@ class Password extends Model
      */
     public function getUsernameAttribute($username)
     {
-        if (!is_null($username)) return $this->decrypt($username);
+        if (!is_null($username)) {
+            return $this->decrypt($username);
+        }
 
-        return null;
+        return;
     }
 
     /**
@@ -156,9 +162,11 @@ class Password extends Model
      */
     public function getPasswordAttribute($password)
     {
-        if (!is_null($password)) return $this->decrypt($password);
+        if (!is_null($password)) {
+            return $this->decrypt($password);
+        }
 
-        return null;
+        return;
     }
 
     /**
@@ -170,8 +178,10 @@ class Password extends Model
      */
     public function getNotesAttribute($notes)
     {
-        if (!is_null($notes)) return $this->decrypt($notes);
+        if (!is_null($notes)) {
+            return $this->decrypt($notes);
+        }
 
-        return null;
+        return;
     }
 }

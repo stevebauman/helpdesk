@@ -31,7 +31,7 @@ class GuideRequest extends Request
     {
         return [
             'title.unique' => 'A guide with this title already exists.',
-            'slug.unique' => 'A guide with this slug already exists.',
+            'slug.unique'  => 'A guide with this slug already exists.',
         ];
     }
 

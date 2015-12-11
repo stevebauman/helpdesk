@@ -2,8 +2,8 @@
 
 namespace App\Processors\Device;
 
-use App\Http\Requests\Device\DriveRequest;
 use App\Http\Presenters\Device\DrivePresenter;
+use App\Http\Requests\Device\DriveRequest;
 use App\Models\Drive;
 use App\Processors\Processor;
 
@@ -22,7 +22,7 @@ class DriveProcessor extends Processor
     /**
      * Constructor.
      *
-     * @param Drive $drive
+     * @param Drive          $drive
      * @param DrivePresenter $presenter
      */
     public function __construct(Drive $drive, DrivePresenter $presenter)

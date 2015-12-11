@@ -2,14 +2,14 @@
 
 namespace App\Processors;
 
-use Exception;
-use Carbon\Carbon;
-use App\Traits\CanPurifyTrait;
-use Vinelab\Rss\Facades\RSS;
-use Illuminate\Support\Fluent;
-use Illuminate\Support\Collection;
-use Illuminate\Contracts\Cache\Repository as Cache;
 use App\Http\Presenters\WelcomePresenter;
+use App\Traits\CanPurifyTrait;
+use Carbon\Carbon;
+use Exception;
+use Illuminate\Contracts\Cache\Repository as Cache;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
+use Vinelab\Rss\Facades\RSS;
 
 class WelcomeProcessor extends Processor
 {
@@ -55,7 +55,7 @@ class WelcomeProcessor extends Processor
             return $this->feed($weatherFeed);
         });
 
-        $news =  $this->cache->remember('feeds.articles', $minutes, function () use ($articleFeed) {
+        $news = $this->cache->remember('feeds.articles', $minutes, function () use ($articleFeed) {
             return $this->feed($articleFeed);
         });
 
@@ -97,7 +97,7 @@ class WelcomeProcessor extends Processor
                 $fluent->title = $feed->title;
                 $fluent->link = $feed->link;
                 $fluent->description = $feed->description;
-                $fluent->articles =  $collection->merge($articles);
+                $fluent->articles = $collection->merge($articles);
             }
         } catch (Exception $e) {
             // Articles could not be loaded.

@@ -2,14 +2,14 @@
 
 namespace App\Processors\ActiveDirectory;
 
-use Adldap\Schemas\ActiveDirectory;
 use Adldap\Contracts\Adldap;
 use Adldap\Models\Computer;
-use App\Jobs\ActiveDirectory\ImportComputer;
-use Illuminate\Http\Request;
-use App\Http\Requests\ActiveDirectory\ComputerImportRequest;
+use Adldap\Schemas\ActiveDirectory;
 use App\Http\Presenters\ActiveDirectory\ComputerPresenter;
+use App\Http\Requests\ActiveDirectory\ComputerImportRequest;
+use App\Jobs\ActiveDirectory\ImportComputer;
 use App\Processors\Processor;
+use Illuminate\Http\Request;
 
 class ComputerProcessor extends Processor
 {

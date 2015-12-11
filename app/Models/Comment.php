@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Orchestra\Support\Facades\HTML;
-use App\Traits\CanPurifyTrait;
 use App\Models\Traits\HasMarkdownTrait;
 use App\Models\Traits\HasUserTrait;
+use App\Traits\CanPurifyTrait;
+use Orchestra\Support\Facades\HTML;
 
 class Comment extends Model
 {
@@ -32,7 +32,7 @@ class Comment extends Model
      */
     public function isResolution()
     {
-        if($this->pivot) {
+        if ($this->pivot) {
             return $this->pivot->resolution;
         }
 

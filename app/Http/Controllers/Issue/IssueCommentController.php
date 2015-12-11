@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Issue;
 
-use App\Processors\IssueCommentProcessor;
-use App\Http\Requests\IssueCommentRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\IssueCommentRequest;
+use App\Processors\IssueCommentProcessor;
 
 class IssueCommentController extends Controller
 {
@@ -33,7 +33,7 @@ class IssueCommentController extends Controller
      */
     public function store(IssueCommentRequest $request, $id)
     {
-        if($this->processor->store($request, $id)) {
+        if ($this->processor->store($request, $id)) {
             flash()->success('Success!', 'Successfully added comment.');
 
             return redirect()->back();
@@ -68,7 +68,7 @@ class IssueCommentController extends Controller
      */
     public function update(IssueCommentRequest $request, $id, $commentId)
     {
-        if($this->processor->update($request, $id, $commentId)) {
+        if ($this->processor->update($request, $id, $commentId)) {
             flash()->success('Success!', 'Successfully updated comment.');
 
             return redirect()->route('issues.show', [$id]);
@@ -89,7 +89,7 @@ class IssueCommentController extends Controller
      */
     public function destroy($id, $commentId)
     {
-        if($this->processor->destroy($id, $commentId)) {
+        if ($this->processor->destroy($id, $commentId)) {
             flash()->success('Success!', 'Successfully deleted comment.');
 
             return redirect()->back();

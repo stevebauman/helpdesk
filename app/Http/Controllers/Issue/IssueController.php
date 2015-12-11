@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Issue;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\IssueRequest;
 use App\Processors\IssueProcessor;
-use App\Http\Controllers\Controller;
 
 class IssueController extends Controller
 {
@@ -62,7 +62,7 @@ class IssueController extends Controller
      */
     public function store(IssueRequest $request)
     {
-        if($this->processor->store($request)) {
+        if ($this->processor->store($request)) {
             flash()->success('Success!', 'Successfully created issue.');
 
             return redirect()->route('issues.index');
@@ -107,7 +107,7 @@ class IssueController extends Controller
      */
     public function update(IssueRequest $request, $id)
     {
-        if($this->processor->update($request, $id)) {
+        if ($this->processor->update($request, $id)) {
             flash()->success('Success!', 'Successfully updated issue.');
 
             return redirect()->route('issues.show', [$id]);
@@ -127,7 +127,7 @@ class IssueController extends Controller
      */
     public function destroy($id)
     {
-        if($this->processor->destroy($id)) {
+        if ($this->processor->destroy($id)) {
             flash()->success('Success!', 'Successfully deleted issue.');
 
             return redirect()->route('issues.index');
@@ -147,7 +147,7 @@ class IssueController extends Controller
      */
     public function close($id)
     {
-        if($this->processor->close($id)) {
+        if ($this->processor->close($id)) {
             flash()->success('Success!', 'Successfully closed issue.');
 
             return redirect()->back();
@@ -167,7 +167,7 @@ class IssueController extends Controller
      */
     public function open($id)
     {
-        if($this->processor->open($id)) {
+        if ($this->processor->open($id)) {
             flash()->success('Success!', 'Successfully re-opened issue.');
 
             return redirect()->back();

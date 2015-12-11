@@ -41,9 +41,9 @@ class Guide extends Model
      * @param string $slug
      * @param array  $with
      *
-     * @return Guide
-     *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Guide
      */
     public function locate($slug, array $with = [])
     {
@@ -93,9 +93,9 @@ class Guide extends Model
     {
         $date = $this->publishedOnHuman();
 
-        $published = ($this->published ? "Yes ($date)": 'No');
+        $published = ($this->published ? "Yes ($date)" : 'No');
 
-        $class = 'label ' . ($this->published ? 'label-success' : 'label-danger');
+        $class = 'label '.($this->published ? 'label-success' : 'label-danger');
 
         return HTML::create('span', $published, compact('class'));
     }

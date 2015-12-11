@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\ServiceProvider;
+use Orchestra\Contracts\Foundation\Foundation;
 use Orchestra\Model\Role;
 use Orchestra\Support\Facades\ACL;
-use Orchestra\Contracts\Foundation\Foundation;
-use Illuminate\Support\ServiceProvider;
 
 class AuthorizationServiceProvider extends ServiceProvider
 {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\PasswordFolder;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PasswordFolder\SetupRequest;
 use App\Processors\PasswordFolder\SetupProcessor;
-use App\Http\Controllers\Controller;
 
 class SetupController extends Controller
 {

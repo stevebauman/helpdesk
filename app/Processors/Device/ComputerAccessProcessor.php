@@ -2,9 +2,9 @@
 
 namespace App\Processors\Device;
 
-use App\Jobs\Computer\CreateAccess;
-use App\Http\Requests\Device\ComputerAccessRequest;
 use App\Http\Presenters\Device\ComputerAccessPresenter;
+use App\Http\Requests\Device\ComputerAccessRequest;
+use App\Jobs\Computer\CreateAccess;
 use App\Models\Computer;
 use App\Processors\Processor;
 
@@ -18,8 +18,8 @@ class ComputerAccessProcessor extends Processor
     /**
      * Constructor.
      *
-     * @param Computer                 $computer
-     * @param ComputerAccessPresenter  $presenter
+     * @param Computer                $computer
+     * @param ComputerAccessPresenter $presenter
      */
     public function __construct(Computer $computer, ComputerAccessPresenter $presenter)
     {
@@ -46,8 +46,8 @@ class ComputerAccessProcessor extends Processor
     /**
      * Updates the specified computers settings.
      *
-     * @param ComputerAccessRequest  $request
-     * @param int|string             $id
+     * @param ComputerAccessRequest $request
+     * @param int|string            $id
      *
      * @return bool|\App\Models\ComputerAccess
      */

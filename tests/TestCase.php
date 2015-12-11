@@ -57,7 +57,8 @@ abstract class TestCase extends ApplicationTestCase
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
+     *
      * @return void
      */
     protected function getEnvironmentSetUp($app)
@@ -76,20 +77,20 @@ abstract class TestCase extends ApplicationTestCase
         // Set the HTML table configuration.
         $app['config']->set('orchestra/html::table', [
             'empty' => 'There are no records to display.',
-            'view' => 'components.table',
+            'view'  => 'components.table',
         ]);
 
         // Set the HTML table configuration.
         $app['config']->set('orchestra/html::form', [
-            'view' => 'components.form',
-            'format' => '<span class="label label-danger">:message</span>',
+            'view'      => 'components.form',
+            'format'    => '<span class="label label-danger">:message</span>',
             'templates' => [
                 'input'    => ['class' => 'col-md-12 input-with-feedback'],
                 'password' => ['class' => 'col-md-12 input-with-feedback'],
                 'select'   => ['class' => 'col-md-12 input-with-feedback'],
                 'textarea' => ['class' => 'col-md-12 input-with-feedback'],
             ],
-            'submit' => 'orchestra/foundation::label.submit',
+            'submit'    => 'orchestra/foundation::label.submit',
             'presenter' => 'Orchestra\Html\Form\BootstrapThreePresenter',
         ]);
 

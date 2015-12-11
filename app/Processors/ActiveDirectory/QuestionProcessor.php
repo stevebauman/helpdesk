@@ -2,12 +2,12 @@
 
 namespace App\Processors\ActiveDirectory;
 
-use QuestionSeeder;
-use Illuminate\Support\Facades\Artisan;
-use App\Http\Requests\ActiveDirectory\QuestionRequest;
 use App\Http\Presenters\ActiveDirectory\QuestionPresenter;
+use App\Http\Requests\ActiveDirectory\QuestionRequest;
 use App\Models\Question;
 use App\Processors\Processor;
+use Illuminate\Support\Facades\Artisan;
+use QuestionSeeder;
 
 class QuestionProcessor extends Processor
 {

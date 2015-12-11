@@ -15,7 +15,7 @@ class SetupQuestionRequest extends Request
     {
         return [
             'question' => 'required|integer',
-            'answer' => 'required',
+            'answer'   => 'required',
         ];
     }
 

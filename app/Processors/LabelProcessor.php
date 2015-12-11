@@ -2,8 +2,8 @@
 
 namespace App\Processors;
 
-use App\Http\Requests\LabelRequest;
 use App\Http\Presenters\LabelPresenter;
+use App\Http\Requests\LabelRequest;
 use App\Models\Label;
 
 class LabelProcessor extends Processor

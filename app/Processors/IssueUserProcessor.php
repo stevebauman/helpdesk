@@ -2,9 +2,9 @@
 
 namespace App\Processors;
 
-use App\Models\User;
-use App\Models\Issue;
 use App\Http\Requests\IssueUserRequest;
+use App\Models\Issue;
+use App\Models\User;
 
 class IssueUserProcessor extends Processor
 {
@@ -12,7 +12,7 @@ class IssueUserProcessor extends Processor
      * Constructor.
      *
      * @param Issue $issue
-     * @param User $user
+     * @param User  $user
      */
     public function __construct(Issue $issue, User $user)
     {

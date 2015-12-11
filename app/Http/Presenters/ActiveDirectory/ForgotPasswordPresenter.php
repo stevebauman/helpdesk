@@ -2,10 +2,10 @@
 
 namespace App\Http\Presenters\ActiveDirectory;
 
+use App\Http\Presenters\Presenter;
 use App\Models\User;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
-use App\Http\Presenters\Presenter;
 
 class ForgotPasswordPresenter extends Presenter
 {
@@ -16,16 +16,14 @@ class ForgotPasswordPresenter extends Presenter
      */
     public function form()
     {
-        return $this->form->of('forgot-password.discover', function (FormGrid $form)
-        {
+        return $this->form->of('forgot-password.discover', function (FormGrid $form) {
             $form->attributes([
                 'url' => route('auth.forgot-password.find'),
             ]);
 
             $form->submit = 'Submit';
 
-            $form->fieldset(function (Fieldset $fieldset)
-            {
+            $form->fieldset(function (Fieldset $fieldset) {
                 $fieldset->control('input:text', 'username')
                     ->label('Username')
                     ->attributes(['placeholder' => 'Enter your Username']);
@@ -44,16 +42,14 @@ class ForgotPasswordPresenter extends Presenter
     {
         $questions = $user->questions;
 
-        return $this->form->of('forgot-password.questions', function (FormGrid $form) use ($user, $questions)
-        {
+        return $this->form->of('forgot-password.questions', function (FormGrid $form) use ($user, $questions) {
             $form->attributes([
                 'url' => route('auth.forgot-password.answer', [$user->forgot_token]),
             ]);
 
             $form->submit = 'Submit';
 
-            $form->fieldset(function (Fieldset $fieldset) use ($questions)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($questions) {
                 foreach ($questions as $question) {
                     $key = $question->getKey();
 
@@ -74,16 +70,14 @@ class ForgotPasswordPresenter extends Presenter
      */
     public function formReset(User $user)
     {
-        return $this->form->of('forgot-password.reset', function (FormGrid $form) use ($user)
-        {
+        return $this->form->of('forgot-password.reset', function (FormGrid $form) use ($user) {
             $form->attributes([
                 'url' => route('auth.forgot-password.change', [$user->reset_token]),
             ]);
 
             $form->submit = 'Submit';
 
-            $form->fieldset(function (Fieldset $fieldset)
-            {
+            $form->fieldset(function (Fieldset $fieldset) {
                 $fieldset->control('input:password', 'password')
                     ->label('Password')
                     ->attributes(['placeholder' => 'Enter your new password']);

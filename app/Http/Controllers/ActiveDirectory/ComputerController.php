@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\ActiveDirectory;
 
-use Illuminate\Http\Request;
-use App\Models\Computer;
-use App\Http\Requests\ActiveDirectory\ComputerImportRequest;
-use App\Processors\ActiveDirectory\ComputerProcessor;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ActiveDirectory\ComputerImportRequest;
+use App\Models\Computer;
+use App\Processors\ActiveDirectory\ComputerProcessor;
+use Illuminate\Http\Request;
 
 class ComputerController extends Controller
 {

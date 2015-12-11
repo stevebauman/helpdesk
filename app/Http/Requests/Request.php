@@ -12,7 +12,7 @@ abstract class Request extends FormRequest
     /**
      * Validate the input.
      *
-     * @param  \Illuminate\Validation\Factory  $factory
+     * @param \Illuminate\Validation\Factory $factory
      *
      * @return \Illuminate\Validation\Validator
      */
@@ -30,8 +30,7 @@ abstract class Request extends FormRequest
      */
     protected function sanitizeInput()
     {
-        if (method_exists($this, 'sanitize'))
-        {
+        if (method_exists($this, 'sanitize')) {
             return $this->container->call([$this, 'sanitize']);
         }
 

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddClosedAtColumnOnIssues extends Migration
 {
@@ -12,8 +12,7 @@ class AddClosedAtColumnOnIssues extends Migration
      */
     public function up()
     {
-        Schema::table('issues', function(Blueprint $table)
-        {
+        Schema::table('issues', function (Blueprint $table) {
             $table->timestamp('closed_at')->after('deleted_at')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AddClosedAtColumnOnIssues extends Migration
      */
     public function down()
     {
-        Schema::table('issues', function(Blueprint $table)
-        {
+        Schema::table('issues', function (Blueprint $table) {
             $table->dropColumn('closed_at');
         });
     }

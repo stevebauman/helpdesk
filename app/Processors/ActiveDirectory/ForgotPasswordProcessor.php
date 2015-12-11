@@ -2,15 +2,15 @@
 
 namespace App\Processors\ActiveDirectory;
 
-use Adldap\Models\User as AdldapUser;
 use Adldap\Contracts\Adldap;
+use Adldap\Models\User as AdldapUser;
+use App\Http\Presenters\ActiveDirectory\ForgotPasswordPresenter;
+use App\Http\Requests\ActiveDirectory\ForgotPassword\DiscoverRequest;
 use App\Http\Requests\ActiveDirectory\ForgotPassword\PasswordRequest;
 use App\Http\Requests\ActiveDirectory\ForgotPassword\QuestionRequest;
-use App\Http\Requests\ActiveDirectory\ForgotPassword\DiscoverRequest;
-use App\Http\Presenters\ActiveDirectory\ForgotPasswordPresenter;
 use App\Jobs\Com\User\ChangePassword;
-use App\Processors\Processor;
 use App\Models\User;
+use App\Processors\Processor;
 use Illuminate\Contracts\Encryption\Encrypter;
 
 class ForgotPasswordProcessor extends Processor

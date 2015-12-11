@@ -2,14 +2,14 @@
 
 namespace App\Http\Presenters;
 
-use App\Models\User;
-use App\Models\Label;
 use App\Models\Comment;
 use App\Models\Issue;
-use Orchestra\Support\Facades\HTML;
+use App\Models\Label;
+use App\Models\User;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
+use Orchestra\Support\Facades\HTML;
 
 class IssuePresenter extends Presenter
 {
@@ -32,12 +32,11 @@ class IssuePresenter extends Presenter
 
         // Limit the view if the user isn't
         // allowed to view all issues.
-        if (! policy($issue->getModel())->viewAll(auth()->user())) {
+        if (!policy($issue->getModel())->viewAll(auth()->user())) {
             $issue->where('user_id', auth()->user()->getKey());
         }
 
-        return $this->table->of('issues', function (TableGrid $table) use ($issue)
-        {
+        return $this->table->of('issues', function (TableGrid $table) use ($issue) {
             $table->with($issue)->paginate($this->perPage);
 
             $table->attributes(['class' => 'table table-hover']);
@@ -62,11 +61,11 @@ class IssuePresenter extends Presenter
                     $labels = [];
                     $users = [];
 
-                    foreach($issue->labels as $label) {
+                    foreach ($issue->labels as $label) {
                         $labels[] = $label->getDisplay();
                     }
 
-                    foreach($issue->users as $user) {
+                    foreach ($issue->users as $user) {
                         $users[] = $user->getLabel();
                     }
 
@@ -90,9 +89,8 @@ class IssuePresenter extends Presenter
      */
     public function form($issue)
     {
-        return $this->form->of('issue', function (FormGrid $form) use ($issue)
-        {
-            if($issue->exists) {
+        return $this->form->of('issue', function (FormGrid $form) use ($issue) {
+            if ($issue->exists) {
                 $form->setup($this, route('issues.update', [$issue->getKey()]), $issue, [
                     'method' => 'PATCH',
                 ]);
@@ -114,7 +112,7 @@ class IssuePresenter extends Presenter
                 $fieldset->control('input:text', 'occurred_at')
                     ->label('Occurred At')
                     ->attributes([
-                        'class' => 'date-picker',
+                        'class'       => 'date-picker',
                         'placeholder' => 'Click to select a date / time',
                     ])
                     ->value(function (Issue $issue) {
@@ -124,7 +122,7 @@ class IssuePresenter extends Presenter
                 $fieldset->control('input:textarea', 'description')
                     ->label('Description')
                     ->attributes([
-                        'placeholder' => 'Leave a comment',
+                        'placeholder'  => 'Leave a comment',
                         'data-provide' => 'markdown',
                     ]);
             });
@@ -154,33 +152,30 @@ class IssuePresenter extends Presenter
      */
     public function formLabels(Issue $issue)
     {
-        return $this->form->of('issue.labels', function (FormGrid $form) use ($issue)
-        {
+        return $this->form->of('issue.labels', function (FormGrid $form) use ($issue) {
             $labels = Label::all()->lists('display', 'id');
 
             $form->setup($this, route('issues.labels.store', [$issue->getKey()]), $issue);
 
             $form->layout('components.form-modal');
 
-            $form->fieldset(function (Fieldset $fieldset) use ($labels)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($labels) {
                 $fieldset->control('select', 'labels[]')
                     ->label('Labels')
                     ->options($labels)
-                    ->value(function(Issue $issue)
-                    {
+                    ->value(function (Issue $issue) {
                         $labels = [];
 
                         $pivots = $issue->labels()->get();
 
-                        foreach($pivots as $row) {
+                        foreach ($pivots as $row) {
                             $labels[] = $row->id;
                         }
 
                         return $labels;
                     })
                     ->attributes([
-                        'class' => 'select-labels form-control',
+                        'class'    => 'select-labels form-control',
                         'multiple' => true,
                     ]);
             });
@@ -198,33 +193,30 @@ class IssuePresenter extends Presenter
      */
     public function formUsers(Issue $issue)
     {
-        return $this->form->of('issue.users', function (FormGrid $form) use ($issue)
-        {
+        return $this->form->of('issue.users', function (FormGrid $form) use ($issue) {
             $users = User::all()->lists('fullname', 'id');
 
             $form->setup($this, route('issues.users.store', [$issue->getKey()]), $issue);
 
             $form->layout('components.form-modal');
 
-            $form->fieldset(function (Fieldset $fieldset) use ($users)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($users) {
                 $fieldset->control('select', 'users[]')
                     ->label('Users')
                     ->options($users)
-                    ->value(function(Issue $issue)
-                    {
+                    ->value(function (Issue $issue) {
                         $users = [];
 
                         $pivots = $issue->users()->get();
 
-                        foreach($pivots as $row) {
+                        foreach ($pivots as $row) {
                             $users[] = $row->id;
                         }
 
                         return $users;
                     })
                     ->attributes([
-                        'class' => 'select-users form-control',
+                        'class'    => 'select-users form-control',
                         'multiple' => true,
                     ]);
             });
@@ -241,12 +233,12 @@ class IssuePresenter extends Presenter
     public function navbar()
     {
         return $this->fluent([
-            'id'    => 'issues',
-            'title' => 'Issues',
-            'url'   => route('issues.index'),
-            'menu'  => view('pages.issues._nav'),
+            'id'         => 'issues',
+            'title'      => 'Issues',
+            'url'        => route('issues.index'),
+            'menu'       => view('pages.issues._nav'),
             'attributes' => [
-                'class' => 'navbar-default'
+                'class' => 'navbar-default',
             ],
         ]);
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Resource;
 
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use App\Processors\Resource\GuideStepImageProcessor;
 use App\Http\Controllers\Controller;
+use App\Processors\Resource\GuideStepImageProcessor;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class GuideStepImageController extends Controller
 {
