@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateUserQuestionsTable extends Migration
 {
@@ -12,8 +12,7 @@ class CreateUserQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table)
-        {
+        Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('content');
@@ -22,8 +21,7 @@ class CreateUserQuestionsTable extends Migration
             $table->unique(['content']);
         });
 
-        Schema::create('user_questions', function(Blueprint $table)
-        {
+        Schema::create('user_questions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned();

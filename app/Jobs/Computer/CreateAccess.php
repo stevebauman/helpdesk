@@ -2,9 +2,9 @@
 
 namespace App\Jobs\Computer;
 
-use App\Models\ComputerAccess;
-use App\Models\Computer;
 use App\Jobs\Job;
+use App\Models\Computer;
+use App\Models\ComputerAccess;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 

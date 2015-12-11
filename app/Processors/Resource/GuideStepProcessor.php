@@ -2,17 +2,17 @@
 
 namespace App\Processors\Resource;
 
+use App\Http\Presenters\Resource\GuideStepPresenter;
 use App\Http\Requests\Resource\GuideStepImagesRequest;
 use App\Http\Requests\Resource\GuideStepMoveRequest;
 use App\Http\Requests\Resource\GuideStepRequest;
-use App\Http\Presenters\Resource\GuideStepPresenter;
 use App\Models\Guide;
 use App\Models\GuideStep;
 use App\Models\Upload;
 use App\Processors\Processor;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Constraint;
 use Intervention\Image\ImageManager;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class GuideStepProcessor extends Processor
@@ -265,12 +265,12 @@ class GuideStepProcessor extends Processor
     protected function handleUpload(Guide $guide, GuideStep $step, UploadedFile $file)
     {
         // Validate file name length.
-        if(strlen($file->getClientOriginalName()) > 70) {
+        if (strlen($file->getClientOriginalName()) > 70) {
             abort(422, 'File name is too large');
         }
 
         // Generate a file name with UUID and its extension.
-        $name = uuid() . "." . $file->getClientOriginalExtension();
+        $name = uuid().'.'.$file->getClientOriginalExtension();
 
         // Generate the storage path.
         $path = sprintf('%s%s%s%s%s%s%s',

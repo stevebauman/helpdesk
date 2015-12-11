@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Orchestra\Model\Role;
-use App\Models\User;
 use Adldap\Models\User as AdldapUser;
 use App\Http\Presenters\LoginPresenter;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Orchestra\Model\Role;
 
 class AuthController extends Controller
 {
@@ -48,7 +48,7 @@ class AuthController extends Controller
     /**
      * Handle a login request to the application.
      *
-     * @param  LoginRequest  $request
+     * @param LoginRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -67,7 +67,7 @@ class AuthController extends Controller
                 return $this->handleUserWasAuthenticated($request, $throttles);
             }
         } catch (\Exception $e) {
-           // Catch LDAP bind errors.
+            // Catch LDAP bind errors.
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -87,8 +87,8 @@ class AuthController extends Controller
     /**
      * Send the response after the user was authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  bool                      $throttles
+     * @param \Illuminate\Http\Request $request
+     * @param bool                     $throttles
      *
      * @return \Illuminate\Http\Response
      */
@@ -110,7 +110,7 @@ class AuthController extends Controller
     /**
      * Attaches roles depending on the users active directory group.
      *
-     * @param User $user
+     * @param User       $user
      * @param AdldapUser $adldapUser
      */
     protected function handleLdapUserWasAuthenticated(User $user, AdldapUser $adldapUser)
@@ -127,7 +127,8 @@ class AuthController extends Controller
     /**
      * Get the needed authorization credentials from the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     protected function getCredentials(Request $request)

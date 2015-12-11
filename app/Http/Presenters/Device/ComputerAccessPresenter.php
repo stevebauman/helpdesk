@@ -2,10 +2,10 @@
 
 namespace App\Http\Presenters\Device;
 
+use App\Http\Presenters\Presenter;
+use App\Models\Computer;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
-use App\Models\Computer;
-use App\Http\Presenters\Presenter;
 
 class ComputerAccessPresenter extends Presenter
 {
@@ -18,14 +18,12 @@ class ComputerAccessPresenter extends Presenter
      */
     public function form(Computer $computer)
     {
-        return $this->form->of('computers.access', function (FormGrid $form) use ($computer)
-        {
+        return $this->form->of('computers.access', function (FormGrid $form) use ($computer) {
             $form->setup($this, route('devices.computers.access.update', [$computer->getKey()]), $computer);
 
             $form->submit = 'Save';
 
-            $form->fieldset(function (Fieldset $fieldset) use ($computer)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($computer) {
                 if ($computer->access) {
                     $ad = $computer->access->active_directory;
                     $wmi = $computer->access->wmi;
@@ -39,7 +37,7 @@ class ComputerAccessPresenter extends Presenter
                 $fieldset->control('input:checkbox', 'Exists in Active Directory?')
                     ->attributes([
                         'class'     => 'switch-mark',
-                        ($ad ? 'checked' : null)
+                        ($ad ? 'checked' : null),
                     ])
                     ->name('active_directory')
                     ->value(1);
@@ -47,7 +45,7 @@ class ComputerAccessPresenter extends Presenter
                 $fieldset->control('input:checkbox', 'Can be accessed through WMI?')
                     ->attributes([
                         'class'     => 'switch-mark',
-                        ($wmi ? 'checked' : null)
+                        ($wmi ? 'checked' : null),
                     ])
                     ->name('wmi')
                     ->value(1);
@@ -58,7 +56,7 @@ class ComputerAccessPresenter extends Presenter
                     $fieldset->control('input:checkbox', 'Same credentials as AD?')
                         ->attributes([
                             'class' => 'switch-mark',
-                            ($wmiUsername ? null : 'checked')
+                            ($wmiUsername ? null : 'checked'),
                         ])
                         ->name('wmi_credentials')
                         ->value(1);
@@ -68,7 +66,7 @@ class ComputerAccessPresenter extends Presenter
                     ->label('WMI Username')
                     ->attributes([
                         'autocomplete' => 'new-username',
-                        'placeholder' => 'The WMI Username',
+                        'placeholder'  => 'The WMI Username',
                     ])
                     ->value($wmiUsername)
                     ->name('wmi_username');
@@ -77,7 +75,7 @@ class ComputerAccessPresenter extends Presenter
                     ->label('WMI Password')
                     ->attributes([
                         'autocomplete' => 'new-password',
-                        'placeholder' => 'The WMI Password',
+                        'placeholder'  => 'The WMI Password',
                     ])
                     ->name('wmi_password');
             });

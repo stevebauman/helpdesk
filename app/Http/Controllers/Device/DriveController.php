@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Device;
 
-use Illuminate\Contracts\View\View;
-use App\Http\Requests\Device\DriveRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Device\DriveRequest;
 use App\Processors\Device\DriveProcessor;
+use Illuminate\Contracts\View\View;
 
 class DriveController extends Controller
 {
@@ -123,7 +123,7 @@ class DriveController extends Controller
     /**
      * Deletes the specified drive.
      *
-     * @param  int|string $id
+     * @param int|string $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */

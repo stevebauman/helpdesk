@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddOccurredAtColumnOnIssues extends Migration
 {
@@ -12,8 +12,7 @@ class AddOccurredAtColumnOnIssues extends Migration
      */
     public function up()
     {
-        Schema::table('issues', function(Blueprint $table)
-        {
+        Schema::table('issues', function (Blueprint $table) {
             $table->timestamp('occurred_at')->after('closed_at')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AddOccurredAtColumnOnIssues extends Migration
      */
     public function down()
     {
-        Schema::table('issues', function(Blueprint $table)
-        {
+        Schema::table('issues', function (Blueprint $table) {
             $table->dropColumn('occurred_at');
         });
     }

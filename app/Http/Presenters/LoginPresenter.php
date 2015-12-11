@@ -14,16 +14,14 @@ class LoginPresenter extends Presenter
      */
     public function form()
     {
-        return $this->form->of('label', function (FormGrid $form)
-        {
+        return $this->form->of('label', function (FormGrid $form) {
             $form->attributes(['url' => route('auth.login.perform')]);
 
             $form->layout('components.form-login');
 
             $form->submit = 'Sign In';
 
-            $form->fieldset(function (Fieldset $fieldset)
-            {
+            $form->fieldset(function (Fieldset $fieldset) {
                 $fieldset->control('input:text', 'email')
                     ->label('Email')
                     ->attributes(['placeholder' => 'Enter your Email']);

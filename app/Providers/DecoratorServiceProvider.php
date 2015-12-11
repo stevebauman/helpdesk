@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Orchestra\Support\Facades\Decorator;
 use Illuminate\Support\ServiceProvider;
+use Orchestra\Support\Facades\Decorator;
 
 class DecoratorServiceProvider extends ServiceProvider
 {

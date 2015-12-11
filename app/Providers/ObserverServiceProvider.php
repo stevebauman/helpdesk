@@ -26,7 +26,7 @@ class ObserverServiceProvider extends ServiceProvider
     public function boot()
     {
         foreach ($this->observers as $model => $observer) {
-            $model::observe(new $observer);
+            $model::observe(new $observer());
         }
     }
 

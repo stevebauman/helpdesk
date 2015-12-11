@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Device;
 
-use App\Processors\Device\ComputerStatusProcessor;
 use App\Http\Controllers\Controller;
+use App\Processors\Device\ComputerStatusProcessor;
 
 class ComputerStatusController extends Controller
 {

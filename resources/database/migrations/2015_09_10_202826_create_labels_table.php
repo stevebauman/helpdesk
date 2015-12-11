@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateLabelsTable extends Migration
 {
@@ -12,8 +12,7 @@ class CreateLabelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('labels', function(Blueprint $table)
-        {
+        Schema::create('labels', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('name');

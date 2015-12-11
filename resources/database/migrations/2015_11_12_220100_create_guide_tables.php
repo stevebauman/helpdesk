@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateGuideTables extends Migration
 {
@@ -12,8 +12,7 @@ class CreateGuideTables extends Migration
      */
     public function up()
     {
-        Schema::create('guides', function (Blueprint $table)
-        {
+        Schema::create('guides', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->boolean('published')->default(false);
@@ -25,8 +24,7 @@ class CreateGuideTables extends Migration
             $table->unique(['title', 'slug']);
         });
 
-        Schema::create('guide_steps', function (Blueprint $table)
-        {
+        Schema::create('guide_steps', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('guide_id')->unsigned();

@@ -2,12 +2,12 @@
 
 namespace App\Processors;
 
-use App\Jobs\CreateIssue;
+use App\Http\Presenters\IssuePresenter;
+use App\Http\Requests\IssueRequest;
 use App\Jobs\CloseIssue;
+use App\Jobs\CreateIssue;
 use App\Jobs\OpenIssue;
 use App\Models\Issue;
-use App\Http\Requests\IssueRequest;
-use App\Http\Presenters\IssuePresenter;
 
 class IssueProcessor extends Processor
 {
@@ -24,7 +24,7 @@ class IssueProcessor extends Processor
     /**
      * Constructor.
      *
-     * @param Issue $issue
+     * @param Issue          $issue
      * @param IssuePresenter $presenter
      */
     public function __construct(Issue $issue, IssuePresenter $presenter)
@@ -168,7 +168,7 @@ class IssueProcessor extends Processor
         $issue->description = $request->input('description', $issue->description);
         $issue->occurred_at = $request->input('occurred_at', $issue->occurred_at);
 
-        if($issue->save()) {
+        if ($issue->save()) {
             return $issue;
         }
 

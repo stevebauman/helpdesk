@@ -103,7 +103,7 @@ class PasswordFolder extends Model
      */
     public function unlock(UnlockRequest $request)
     {
-        if($this->checkPin($request->input('pin'))) {
+        if ($this->checkPin($request->input('pin'))) {
             // Store the UUID in the users session so they can have
             // access to it for as long as the session exists
             $request->session()->put($this->uuid, $this->uuid);

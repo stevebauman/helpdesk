@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Computer;
 
-use App\Models\OperatingSystem;
 use App\Jobs\Job;
+use App\Models\OperatingSystem;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class CreateOs extends Job implements SelfHandling
@@ -48,7 +48,7 @@ class CreateOs extends Job implements SelfHandling
      */
     public function handle()
     {
-        if (!is_null ($this->name)) {
+        if (!is_null($this->name)) {
             $os = OperatingSystem::firstOrNew([
                 'name' => $this->name,
             ]);

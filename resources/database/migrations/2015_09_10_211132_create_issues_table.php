@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateIssuesTable extends Migration
 {
@@ -12,8 +12,7 @@ class CreateIssuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('issues', function(Blueprint $table)
-        {
+        Schema::create('issues', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->softDeletes();
@@ -25,8 +24,7 @@ class CreateIssuesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::create('issue_labels', function(Blueprint $table)
-        {
+        Schema::create('issue_labels', function (Blueprint $table) {
             $table->integer('issue_id')->unsigned();
             $table->integer('label_id')->unsigned();
 
@@ -34,8 +32,7 @@ class CreateIssuesTable extends Migration
             $table->foreign('label_id')->references('id')->on('labels');
         });
 
-        Schema::create('issue_comments', function(Blueprint $table)
-        {
+        Schema::create('issue_comments', function (Blueprint $table) {
             $table->integer('issue_id')->unsigned();
             $table->integer('comment_id')->unsigned();
             $table->boolean('resolution')->default(false);
@@ -47,8 +44,7 @@ class CreateIssuesTable extends Migration
             $table->unique(['issue_id', 'comment_id', 'resolution']);
         });
 
-        Schema::create('issue_users', function(Blueprint $table)
-        {
+        Schema::create('issue_users', function (Blueprint $table) {
             $table->integer('issue_id')->unsigned();
             $table->integer('user_id')->unsigned();
 

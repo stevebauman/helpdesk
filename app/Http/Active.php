@@ -51,11 +51,11 @@ class Active
             $route = $this->stripWildcard($route);
 
             return $this->route($route);
-        } else if (str_contains($current, $route)) {
+        } elseif (str_contains($current, $route)) {
             return $this->output;
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -71,10 +71,12 @@ class Active
         foreach ($routes as $route) {
             $output = $this->route($route);
 
-            if ($output) return $output;
+            if ($output) {
+                return $output;
+            }
         }
 
-        return null;
+        return;
     }
 
     /**

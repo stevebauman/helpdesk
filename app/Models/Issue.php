@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Orchestra\Support\Facades\HTML;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Traits\CanPurifyTrait;
 use App\Models\Traits\HasMarkdownTrait;
 use App\Models\Traits\HasUserTrait;
+use App\Traits\CanPurifyTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Orchestra\Support\Facades\HTML;
 
 class Issue extends Model
 {
@@ -86,7 +86,7 @@ class Issue extends Model
     }
 
     /**
-     * The belongsToMany labels relationship
+     * The belongsToMany labels relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -96,7 +96,7 @@ class Issue extends Model
     }
 
     /**
-     * The belongsToMany users relationship
+     * The belongsToMany users relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -131,7 +131,9 @@ class Issue extends Model
         ];
 
         // Make sure we only allow one comment resolution
-        if($this->hasCommentResolution()) $resolution = false;
+        if ($this->hasCommentResolution()) {
+            $resolution = false;
+        }
 
         return $this->comments()->create($attributes, compact('resolution'));
     }
@@ -176,7 +178,7 @@ class Issue extends Model
      */
     public function hasCommentResolution()
     {
-        return ($this->findCommentResolution() ? true : false);
+        return $this->findCommentResolution() ? true : false;
     }
 
     /**

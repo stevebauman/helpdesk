@@ -53,9 +53,9 @@ class IssueCommentProcessor extends Processor
      * @param int|string $id
      * @param int|string $commentId
      *
-     * @return \Illuminate\View\View
-     *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     *
+     * @return \Illuminate\View\View
      */
     public function edit($id, $commentId)
     {

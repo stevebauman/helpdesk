@@ -2,11 +2,11 @@
 
 namespace App\Http\Presenters\ActiveDirectory;
 
-use Orchestra\Contracts\Html\Form\Fieldset;
-use Orchestra\Contracts\Html\Table\Grid as TableGrid;
-use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use App\Http\Presenters\Presenter;
 use App\Models\Question;
+use Orchestra\Contracts\Html\Form\Fieldset;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Contracts\Html\Table\Grid as TableGrid;
 
 class QuestionPresenter extends Presenter
 {
@@ -20,16 +20,14 @@ class QuestionPresenter extends Presenter
      */
     public function table(Question $question)
     {
-        return $this->table->of('active-directory.questions', function(TableGrid $table) use ($question)
-        {
+        return $this->table->of('active-directory.questions', function (TableGrid $table) use ($question) {
             $table->with($question->query())->paginate($this->perPage);
 
             $table->searchable(['content']);
 
             $table->attributes('class', 'table table-hover');
 
-            $table->column('content', function ($column)
-            {
+            $table->column('content', function ($column) {
                 $column->label = 'Question';
 
                 $column->value = function (Question $question) {
@@ -48,8 +46,7 @@ class QuestionPresenter extends Presenter
      */
     public function form(Question $question)
     {
-        return $this->form->of('active-directory.question', function (FormGrid $form) use ($question)
-        {
+        return $this->form->of('active-directory.question', function (FormGrid $form) use ($question) {
             if ($question->exists) {
                 $form->setup($this, route('active-directory.questions.update', [$question->getKey()]), $question, [
                     'method' => 'PATCH',
@@ -80,12 +77,12 @@ class QuestionPresenter extends Presenter
     public function navbar()
     {
         return $this->fluent([
-            'id'    => 'questions',
-            'title' => 'Questions',
-            'url'   => route('active-directory.questions.index'),
-            'menu'  => view('pages.active-directory.questions._nav'),
+            'id'         => 'questions',
+            'title'      => 'Questions',
+            'url'        => route('active-directory.questions.index'),
+            'menu'       => view('pages.active-directory.questions._nav'),
             'attributes' => [
-                'class' => 'navbar-default'
+                'class' => 'navbar-default',
             ],
         ]);
     }

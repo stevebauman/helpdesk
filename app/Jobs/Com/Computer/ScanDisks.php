@@ -2,17 +2,17 @@
 
 namespace App\Jobs\Com\Computer;
 
+use App\Jobs\Computer\CreateDisk;
+use App\Jobs\Computer\CreateDiskRecord;
+use App\Jobs\Job;
+use App\Models\Computer;
+use App\Models\ComputerHardDisk;
+use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Stevebauman\Wmi\ConnectionInterface;
 use Stevebauman\Wmi\Models\Variants\HardDisk;
 use Stevebauman\Wmi\Schemas\Namespaces;
 use Stevebauman\Wmi\Wmi;
-use App\Models\ComputerHardDisk;
-use App\Models\Computer;
-use App\Jobs\Computer\CreateDiskRecord;
-use App\Jobs\Computer\CreateDisk;
-use App\Jobs\Job;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Contracts\Bus\SelfHandling;
 
 class ScanDisks extends Job implements SelfHandling
 {
@@ -90,7 +90,7 @@ class ScanDisks extends Job implements SelfHandling
 
                     return $added;
                 }
-            } catch(\COM_EXCEPTION $e) {
+            } catch (\COM_EXCEPTION $e) {
                 //
             }
         }

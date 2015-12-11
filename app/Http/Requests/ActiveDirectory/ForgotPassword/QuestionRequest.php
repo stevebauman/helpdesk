@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\ActiveDirectory\ForgotPassword;
 
-use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 class QuestionRequest extends Request
 {

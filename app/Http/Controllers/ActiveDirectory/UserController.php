@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\ActiveDirectory;
 
-use App\Http\Requests\ActiveDirectory\UserRequest;
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Http\Requests\ActiveDirectory\UserImportRequest;
-use App\Processors\ActiveDirectory\UserProcessor;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ActiveDirectory\UserImportRequest;
+use App\Http\Requests\ActiveDirectory\UserRequest;
+use App\Models\User;
+use App\Processors\ActiveDirectory\UserProcessor;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -39,7 +39,7 @@ class UserController extends Controller
     }
 
     /**
-     * Displays the
+     * Displays the.
      *
      * @return \Illuminate\View\View
      */

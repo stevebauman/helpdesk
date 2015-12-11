@@ -2,11 +2,11 @@
 
 namespace App\Http\Presenters\PasswordFolder;
 
-use Orchestra\Contracts\Html\Form\Fieldset;
-use Orchestra\Contracts\Html\Table\Grid as TableGrid;
-use Orchestra\Contracts\Html\Form\Grid as FormGrid;
-use App\Models\Password;
 use App\Http\Presenters\Presenter;
+use App\Models\Password;
+use Orchestra\Contracts\Html\Form\Fieldset;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Contracts\Html\Table\Grid as TableGrid;
 
 class PasswordPresenter extends Presenter
 {
@@ -19,8 +19,7 @@ class PasswordPresenter extends Presenter
      */
     public function table($password)
     {
-        return $this->table->of('passwords', function(TableGrid $table) use ($password)
-        {
+        return $this->table->of('passwords', function (TableGrid $table) use ($password) {
             $table->attributes('class', 'table table-hover');
 
             $table->with($password)->paginate($this->perPage);
@@ -52,8 +51,7 @@ class PasswordPresenter extends Presenter
      */
     public function form(Password $password, $viewing = false)
     {
-        return $this->form->of('passwords', function(FormGrid $form) use ($password, $viewing)
-        {
+        return $this->form->of('passwords', function (FormGrid $form) use ($password, $viewing) {
             if ($password->exists) {
                 if ($viewing) {
                     $form->setup($this, null, $password);
@@ -72,35 +70,34 @@ class PasswordPresenter extends Presenter
                 $form->submit = 'Create';
             }
 
-            $form->fieldset(function (Fieldset $fieldset) use ($viewing)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($viewing) {
                 $fieldset->control('input:text', 'title')
                     ->label('Title')
                     ->attributes([
                         'placeholder' => 'Title of the Password',
-                        ($viewing ?'disabled' : null)
+                        ($viewing ? 'disabled' : null),
                     ]);
 
                 $fieldset->control('input:text', 'website')
                     ->label('Website')
                     ->attributes([
                         'placeholder' => 'Website',
-                        ($viewing ?'disabled' : null)
+                        ($viewing ? 'disabled' : null),
                     ]);
 
                 $fieldset->control('input:text', 'username')
                     ->label('Username')
                     ->attributes([
-                        'placeholder' => 'The Username for the password',
+                        'placeholder'  => 'The Username for the password',
                         'autocomplete' => 'new-username',
-                        ($viewing ?'disabled' : null)
+                        ($viewing ? 'disabled' : null),
                     ]);
 
                 $fieldset->control('input:password', 'password')
                     ->label('Password')
                     ->attributes([
-                        'class' => 'password-show',
-                        'placeholder' => 'Enter your Password',
+                        'class'        => 'password-show',
+                        'placeholder'  => 'Enter your Password',
                         'autocomplete' => 'new-password',
                     ]);
 
@@ -108,7 +105,7 @@ class PasswordPresenter extends Presenter
                     ->label('Notes')
                     ->attributes([
                         'placeholder' => 'Notes',
-                        ($viewing ?'disabled' : null)
+                        ($viewing ? 'disabled' : null),
                     ]);
             });
         });
@@ -122,12 +119,12 @@ class PasswordPresenter extends Presenter
     public function navbar()
     {
         return $this->fluent([
-            'id' => 'passwords',
-            'title' => 'Passwords',
-            'url' => route('passwords.index'),
-            'menu' => view('pages.passwords._nav'),
+            'id'         => 'passwords',
+            'title'      => 'Passwords',
+            'url'        => route('passwords.index'),
+            'menu'       => view('pages.passwords._nav'),
             'attributes' => [
-                'class' => 'navbar-default'
+                'class' => 'navbar-default',
             ],
         ]);
     }

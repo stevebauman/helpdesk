@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Adldap\Models\Entry;
-use App\Exceptions\Devices\UnableToMountDriveException;
 use Adldap\Connections\Configuration;
 use Adldap\Laravel\Facades\Adldap;
+use Adldap\Models\Entry;
+use App\Exceptions\Devices\UnableToMountDriveException;
 use Stevebauman\WinPerm\Account;
 use Stevebauman\WinPerm\Exceptions\InvalidPathException;
 use Stevebauman\WinPerm\Permission;

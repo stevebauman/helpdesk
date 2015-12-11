@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Device;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Device\ComputerAccessRequest;
 use App\Processors\Device\ComputerAccessProcessor;
-use App\Http\Controllers\Controller;
 
 class ComputerAccessController extends Controller
 {
@@ -38,8 +38,8 @@ class ComputerAccessController extends Controller
     /**
      * Updates the specified computers settings.
      *
-     * @param ComputerAccessRequest  $request
-     * @param int|string             $id
+     * @param ComputerAccessRequest $request
+     * @param int|string            $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */

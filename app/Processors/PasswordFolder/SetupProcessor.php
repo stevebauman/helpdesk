@@ -3,8 +3,8 @@
 namespace App\Processors\PasswordFolder;
 
 use App\Http\Presenters\PasswordFolder\SetupPresenter;
-use App\Jobs\PasswordFolder\Create as CreatePasswordFolder;
 use App\Http\Requests\PasswordFolder\SetupRequest;
+use App\Jobs\PasswordFolder\Create as CreatePasswordFolder;
 use App\Models\PasswordFolder;
 use App\Processors\Processor;
 

@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
-
 use App\Models\Label;
+use Illuminate\Database\Seeder;
 
 class LabelSeeder extends Seeder
 {
@@ -17,32 +16,32 @@ class LabelSeeder extends Seeder
 
         $labels = [
             [
-                'name' => 'Duplicate',
+                'name'  => 'Duplicate',
                 'color' => $colors['default'],
             ],
             [
-                'name' => 'In Progress',
+                'name'  => 'In Progress',
                 'color' => $colors['info'],
             ],
             [
-                'name' => 'Question',
+                'name'  => 'Question',
                 'color' => $colors['info'],
             ],
             [
-                'name' => 'Working on it',
+                'name'  => 'Working on it',
                 'color' => $colors['warning'],
             ],
             [
-                'name' => 'Bug',
+                'name'  => 'Bug',
                 'color' => $colors['danger'],
             ],
             [
-                'name' => 'Critical',
+                'name'  => 'Critical',
                 'color' => $colors['danger'],
             ],
         ];
 
-        foreach($labels as $label) {
+        foreach ($labels as $label) {
             Label::firstOrCreate($label);
         }
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Presenters\PasswordFolder;
 
+use App\Http\Presenters\Presenter;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
-use App\Http\Presenters\Presenter;
 
 class GatePresenter extends Presenter
 {
@@ -15,10 +15,9 @@ class GatePresenter extends Presenter
      */
     public function form()
     {
-        return $this->form->of('passwords.gate', function (FormGrid $form)
-        {
+        return $this->form->of('passwords.gate', function (FormGrid $form) {
             $form->attributes([
-                'url' => route('passwords.gate.unlock'),
+                'url'    => route('passwords.gate.unlock'),
                 'method' => 'POST',
             ]);
 

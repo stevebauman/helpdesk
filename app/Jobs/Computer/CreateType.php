@@ -2,10 +2,10 @@
 
 namespace App\Jobs\Computer;
 
-use App\Models\ComputerType;
 use App\Jobs\Job;
-use Illuminate\Support\Str;
+use App\Models\ComputerType;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Support\Str;
 
 class CreateType extends Job implements SelfHandling
 {
@@ -38,7 +38,7 @@ class CreateType extends Job implements SelfHandling
     {
         if (Str::contains($os, 'Windows Server')) {
             $this->name = 'Server';
-        } else if (Str::contains($os, 'Windows')) {
+        } elseif (Str::contains($os, 'Windows')) {
             $this->name = 'Workstation';
         } else {
             $this->name = 'Unknown';

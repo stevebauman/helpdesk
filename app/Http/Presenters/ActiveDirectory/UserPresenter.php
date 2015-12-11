@@ -2,14 +2,14 @@
 
 namespace App\Http\Presenters\ActiveDirectory;
 
+use Adldap\Models\User as AdUser;
+use Adldap\Objects\AccountControl;
+use App\Http\Presenters\Presenter;
+use App\Models\User;
 use Orchestra\Contracts\Html\Form\Fieldset;
-use Orchestra\Support\Facades\HTML;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
-use Adldap\Objects\AccountControl;
-use Adldap\Models\User as AdUser;
-use App\Models\User;
-use App\Http\Presenters\Presenter;
+use Orchestra\Support\Facades\HTML;
 
 class UserPresenter extends Presenter
 {
@@ -22,8 +22,7 @@ class UserPresenter extends Presenter
      */
     public function table(array $users = [])
     {
-        return $this->table->of('active-directory.users', function(TableGrid $table) use ($users)
-        {
+        return $this->table->of('active-directory.users', function (TableGrid $table) use ($users) {
             $table->attributes('class', 'table table-hover');
 
             $table->rows($users);
@@ -58,7 +57,7 @@ class UserPresenter extends Presenter
                 $column->value = function (AdUser $user) {
                     $exists = User::where('email', $user->getEmail())->first();
 
-                    if($exists) {
+                    if ($exists) {
                         return $this->formAdded();
                     } else {
                         return $this->formAdd($user);
@@ -188,13 +187,13 @@ class UserPresenter extends Presenter
     {
         $key = sprintf('active-directory.users.%s', $user->getAccountName());
 
-        return $this->form->of($key, function(FormGrid $form) use ($user) {
+        return $this->form->of($key, function (FormGrid $form) use ($user) {
             $form->attributes([
-                'url' => route('active-directory.users.import'),
+                'url'    => route('active-directory.users.import'),
                 'method' => 'POST',
             ]);
 
-            $form->hidden('dn', function($field) use ($user) {
+            $form->hidden('dn', function ($field) use ($user) {
                 $field->value = $user->getDn();
             });
 
@@ -210,9 +209,9 @@ class UserPresenter extends Presenter
     public function formAdded()
     {
         return HTML::create('input', null, [
-            'type' => 'submit',
-            'class' => 'btn btn-primary',
-            'value' => 'Added',
+            'type'     => 'submit',
+            'class'    => 'btn btn-primary',
+            'value'    => 'Added',
             'disabled' => true,
         ]);
     }
@@ -225,12 +224,12 @@ class UserPresenter extends Presenter
     public function navbar()
     {
         return $this->fluent([
-            'id'    => 'ad-users',
-            'title' => 'Users',
-            'url'   => route('active-directory.users.index'),
-            'menu'  => view('pages.active-directory.users._nav'),
+            'id'         => 'ad-users',
+            'title'      => 'Users',
+            'url'        => route('active-directory.users.index'),
+            'menu'       => view('pages.active-directory.users._nav'),
             'attributes' => [
-                'class' => 'navbar-default'
+                'class' => 'navbar-default',
             ],
         ]);
     }

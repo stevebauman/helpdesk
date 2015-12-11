@@ -2,12 +2,12 @@
 
 namespace App\Processors\Device;
 
-use Adldap\Models\Computer as AdComputer;
 use Adldap\Contracts\Adldap;
-use App\Jobs\ActiveDirectory\ImportComputer;
-use App\Jobs\Computer\Create;
+use Adldap\Models\Computer as AdComputer;
 use App\Http\Presenters\Device\ComputerPresenter;
 use App\Http\Requests\Device\ComputerRequest;
+use App\Jobs\ActiveDirectory\ImportComputer;
+use App\Jobs\Computer\Create;
 use App\Models\Computer;
 use App\Models\ComputerType;
 use App\Models\OperatingSystem;

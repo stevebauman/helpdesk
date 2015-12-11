@@ -2,9 +2,9 @@
 
 namespace App\Jobs\Computer;
 
-use App\Models\ComputerHardDisk;
-use App\Models\Computer;
 use App\Jobs\Job;
+use App\Models\Computer;
+use App\Models\ComputerHardDisk;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class CreateDisk extends Job implements SelfHandling
@@ -45,11 +45,11 @@ class CreateDisk extends Job implements SelfHandling
     /**
      * Constructor.
      *
-     * @param Computer          $computer
-     * @param string            $name
-     * @param int               $size
-     * @param string|null       $installed
-     * @param string|null       $description
+     * @param Computer    $computer
+     * @param string      $name
+     * @param int         $size
+     * @param string|null $installed
+     * @param string|null $description
      */
     public function __construct(Computer $computer, $name, $size = 0, $installed = null, $description = null)
     {

@@ -2,8 +2,8 @@
 
 namespace App\Jobs\PasswordFolder;
 
-use App\Models\PasswordFolder;
 use App\Jobs\Job;
+use App\Models\PasswordFolder;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class Create extends Job implements SelfHandling

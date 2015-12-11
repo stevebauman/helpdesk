@@ -2,14 +2,14 @@
 
 namespace App\Http\Presenters\Resource;
 
-use App\Models\Guide;
-use Orchestra\Contracts\Html\Form\Field;
-use Orchestra\Support\Facades\HTML;
-use Orchestra\Contracts\Html\Form\Fieldset;
-use Orchestra\Contracts\Html\Table\Grid as TableGrid;
-use Orchestra\Contracts\Html\Form\Grid as FormGrid;
-use App\Models\GuideStep;
 use App\Http\Presenters\Presenter;
+use App\Models\Guide;
+use App\Models\GuideStep;
+use Orchestra\Contracts\Html\Form\Field;
+use Orchestra\Contracts\Html\Form\Fieldset;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Contracts\Html\Table\Grid as TableGrid;
+use Orchestra\Support\Facades\HTML;
 
 class GuideStepPresenter extends Presenter
 {
@@ -23,10 +23,9 @@ class GuideStepPresenter extends Presenter
      */
     public function form(Guide $guide, GuideStep $step)
     {
-        return $this->form->of('resources.guides.steps', function (FormGrid $form) use ($guide, $step)
-        {
+        return $this->form->of('resources.guides.steps', function (FormGrid $form) use ($guide, $step) {
             $attributes = [
-                'files' => true
+                'files' => true,
             ];
 
             if ($step->exists) {
@@ -45,8 +44,7 @@ class GuideStepPresenter extends Presenter
 
             $form->layout('pages.resources.guides.steps._form');
 
-            $form->fieldset(function (Fieldset $fieldset) use ($guide, $step)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($guide, $step) {
                 $hasImage = (count($step->images) > 0 ? true : false);
 
                 foreach ($step->images as $image) {
@@ -59,9 +57,9 @@ class GuideStepPresenter extends Presenter
                             $photo = HTML::image($url, null, ['class' => 'img-responsive']);
 
                             $button = HTML::link(route('resources.guides.steps.images.destroy', [$guide->getSlug(), $step->getKey(), $image->uuid]), 'Delete', [
-                                'class' => 'btn btn-danger',
-                                'data-post' => 'DELETE',
-                                'data-title' => 'Delete Image?',
+                                'class'        => 'btn btn-danger',
+                                'data-post'    => 'DELETE',
+                                'data-title'   => 'Delete Image?',
                                 'data-message' => 'Are you sure you want to delete this image?',
                             ]);
 
@@ -71,7 +69,7 @@ class GuideStepPresenter extends Presenter
                 }
 
                 $fieldset->control('input:file', 'image')
-                    ->label(($hasImage ? 'Replace Image(s)': 'Image'));
+                    ->label(($hasImage ? 'Replace Image(s)' : 'Image'));
 
                 $fieldset
                     ->control('input:text', 'title')
@@ -99,9 +97,9 @@ class GuideStepPresenter extends Presenter
     {
         return $this->form->of('resources.guides.images', function (FormGrid $form) use ($guide) {
             $attributes = [
-                'files' => true,
+                'files'  => true,
                 'method' => 'POST',
-                'url' => route('resources.guides.images.upload', [$guide->getSlug()]),
+                'url'    => route('resources.guides.images.upload', [$guide->getSlug()]),
             ];
 
             $form->attributes($attributes);
@@ -141,7 +139,7 @@ class GuideStepPresenter extends Presenter
             $table->column('move')
                 ->attributes(function (GuideStep $step) {
                     return [
-                        'class' => 'sortable-handle',
+                        'class'   => 'sortable-handle',
                         'data-id' => $step->getKey(),
                     ];
                 })
@@ -163,16 +161,16 @@ class GuideStepPresenter extends Presenter
             $table
                 ->column('description')
                 ->value(function (GuideStep $step) {
-                    return ($step->description ? str_limit($step->description, 25) : '<em>None</em>');
+                    return $step->description ? str_limit($step->description, 25) : '<em>None</em>';
                 });
 
             $table->column('delete')
                 ->value(function (GuideStep $step) use ($guide) {
                     $attribues = [
-                        'class' => 'btn btn-sm btn-danger',
-                        'data-title' => 'Delete Step?',
+                        'class'        => 'btn btn-sm btn-danger',
+                        'data-title'   => 'Delete Step?',
                         'data-message' => 'Are you sure you want to delete this step?',
-                        'data-post' => 'DELETE',
+                        'data-post'    => 'DELETE',
                     ];
 
                      return link_to_route('resources.guides.steps.destroy', 'Delete', [$guide->getSlug(), $step->getPosition()], $attribues);
@@ -190,12 +188,12 @@ class GuideStepPresenter extends Presenter
     public function navbar(Guide $guide)
     {
         return $this->fluent([
-            'id'    => 'guide-steps',
-            'title' => 'Guide Steps',
-            'url'   => route('resources.guides.steps.index', [$guide->getSlug()]),
-            'menu'  => view('pages.resources.guides.steps._nav', compact('guide')),
+            'id'         => 'guide-steps',
+            'title'      => 'Guide Steps',
+            'url'        => route('resources.guides.steps.index', [$guide->getSlug()]),
+            'menu'       => view('pages.resources.guides.steps._nav', compact('guide')),
             'attributes' => [
-                'class' => 'navbar-default'
+                'class' => 'navbar-default',
             ],
         ]);
     }

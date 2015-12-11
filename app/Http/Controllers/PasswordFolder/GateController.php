@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\PasswordFolder;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PasswordFolder\LockRequest;
 use App\Http\Requests\PasswordFolder\UnlockRequest;
 use App\Processors\PasswordFolder\GateProcessor;
-use App\Http\Controllers\Controller;
 
 class GateController extends Controller
 {

@@ -2,13 +2,13 @@
 
 namespace App\Jobs\ActiveDirectory;
 
+use Adldap\Models\Computer as AdComputer;
 use App\Jobs\Computer\Create as CreateComputer;
 use App\Jobs\Computer\CreateAccess;
 use App\Jobs\Computer\CreateOs;
 use App\Jobs\Computer\CreateStatus;
 use App\Jobs\Computer\CreateType;
 use App\Jobs\Job;
-use Adldap\Models\Computer as AdComputer;
 use App\Models\Computer;
 use App\Models\ComputerType;
 use App\Models\OperatingSystem;

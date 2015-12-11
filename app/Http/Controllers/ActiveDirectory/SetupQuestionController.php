@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\ActiveDirectory;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ActiveDirectory\SetupQuestionRequest;
 use App\Processors\ActiveDirectory\SetupQuestionProcessor;
-use App\Http\Controllers\Controller;
 
 class SetupQuestionController extends Controller
 {
@@ -34,7 +34,7 @@ class SetupQuestionController extends Controller
     }
 
     /**
-     * Displays the users security question
+     * Displays the users security question.
      *
      * @param int|string $id
      *

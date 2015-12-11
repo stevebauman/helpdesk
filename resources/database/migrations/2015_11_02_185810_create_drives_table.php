@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateDrivesTable extends Migration
 {
@@ -12,8 +12,7 @@ class CreateDrivesTable extends Migration
      */
     public function up()
     {
-        Schema::create('drives', function (Blueprint $table)
-        {
+        Schema::create('drives', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('name');

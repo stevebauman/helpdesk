@@ -2,13 +2,13 @@
 
 namespace App\Http\Presenters\ActiveDirectory;
 
-use Orchestra\Contracts\Html\Form\Fieldset;
-use Orchestra\Contracts\Html\Table\Column;
-use Orchestra\Contracts\Html\Form\Grid as FormGrid;
-use Orchestra\Contracts\Html\Table\Grid as TableGrid;
+use App\Http\Presenters\Presenter;
 use App\Models\Question;
 use App\Models\User;
-use App\Http\Presenters\Presenter;
+use Orchestra\Contracts\Html\Form\Fieldset;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Contracts\Html\Table\Column;
+use Orchestra\Contracts\Html\Table\Grid as TableGrid;
 
 class SetupQuestionPresenter extends Presenter
 {
@@ -23,8 +23,7 @@ class SetupQuestionPresenter extends Presenter
     {
         $questions = $user->questions->toArray();
 
-        return $this->table->of('active-directory.security-questions', function (TableGrid $table) use ($questions)
-        {
+        return $this->table->of('active-directory.security-questions', function (TableGrid $table) use ($questions) {
             $table->rows($questions);
 
             $table->attributes(['class' => 'table table-hover']);
@@ -47,13 +46,11 @@ class SetupQuestionPresenter extends Presenter
      */
     public function form(User $user, Question $question)
     {
-        $questions = $question->whereHas('users', function ($query) use ($user)
-        {
+        $questions = $question->whereHas('users', function ($query) use ($user) {
             $query->where('user_id', '=', $user->getKey());
         }, '<', 1)->get()->lists('content', 'id');
 
-        return $this->form->of('active-directory.security-questions.setup', function(FormGrid $form) use ($questions, $question)
-        {
+        return $this->form->of('active-directory.security-questions.setup', function (FormGrid $form) use ($questions, $question) {
             if ($question->exists) {
                 // If the question exists, we'll add it to the questions
                 // collection so it's available for selection.
@@ -72,20 +69,19 @@ class SetupQuestionPresenter extends Presenter
 
             $form->attributes(['url' => $route]);
 
-            $form->fieldset(function (Fieldset $fieldset) use ($questions, $question)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($questions, $question) {
                 $fieldset->control('select', 'question')
                     ->label('Question')
                     ->options($questions)
-                    ->value(function() use ($question) {
+                    ->value(function () use ($question) {
                         return $question->getKey();
                     });
 
                 $fieldset->control('input:password', 'answer')
                     ->attributes([
-                        'class' => 'password-show',
+                        'class'        => 'password-show',
                         'autocomplete' => 'new-answer',
-                        'placeholder' => 'Enter your security question answer.',
+                        'placeholder'  => 'Enter your security question answer.',
                     ]);
             });
         });

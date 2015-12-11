@@ -2,8 +2,8 @@
 
 namespace App\Tests;
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Active;
+use Illuminate\Support\Facades\Route;
 
 class ActiveTest extends TestCase
 {
@@ -75,7 +75,7 @@ class ActiveTest extends TestCase
 
         $routes = [
             'some.route.*',
-            'some.*'
+            'some.*',
         ];
 
         $output = $this->newActive()->routes($routes);

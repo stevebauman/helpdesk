@@ -2,12 +2,12 @@
 
 namespace App\Processors\Resource;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 use App\Http\Presenters\Resource\GuidePresenter;
 use App\Http\Requests\Resource\GuideRequest;
 use App\Models\Guide;
 use App\Processors\Processor;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class GuideProcessor extends Processor
 {
@@ -100,7 +100,7 @@ class GuideProcessor extends Processor
         $guide = $this->guide->locate($id, [
             'steps' => function (HasMany $query) {
                 $query->orderBy('position');
-            }
+            },
         ]);
 
         $navbar = $this->presenter->navbarShow($guide);
@@ -160,7 +160,7 @@ class GuideProcessor extends Processor
     }
 
     /**
-     * Deletes the specified model
+     * Deletes the specified model.
      *
      * @param int|string $id
      *

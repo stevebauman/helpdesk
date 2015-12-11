@@ -37,7 +37,7 @@ class ComputerAccess extends Model
     protected $fillable = [
         'computer_id',
         'active_directory',
-        'wmi'
+        'wmi',
     ];
 
     /**
@@ -47,7 +47,7 @@ class ComputerAccess extends Model
      */
     public function getEncryptionKey()
     {
-        $key = $this->computer->getKey() . config('app.key');
+        $key = $this->computer->getKey().config('app.key');
 
         return substr($key, 0, 32);
     }
@@ -91,9 +91,11 @@ class ComputerAccess extends Model
      */
     public function getWmiUsernameAttribute($username)
     {
-        if (!is_null($username)) return $this->decrypt($username);
+        if (!is_null($username)) {
+            return $this->decrypt($username);
+        }
 
-        return null;
+        return;
     }
 
     /**
@@ -105,8 +107,10 @@ class ComputerAccess extends Model
      */
     public function getWmiPasswordAttribute($password)
     {
-        if (!is_null($password)) return $this->decrypt($password);
+        if (!is_null($password)) {
+            return $this->decrypt($password);
+        }
 
-        return null;
+        return;
     }
 }

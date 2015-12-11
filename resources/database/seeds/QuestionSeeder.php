@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
-
 use App\Models\Question;
+use Illuminate\Database\Seeder;
 
 class QuestionSeeder extends Seeder
 {
@@ -15,7 +14,7 @@ class QuestionSeeder extends Seeder
     {
         $questions = Question::getDefault();
 
-        foreach($questions as $question) {
+        foreach ($questions as $question) {
             Question::firstOrCreate([
                 'content' => $question,
             ]);

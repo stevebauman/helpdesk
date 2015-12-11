@@ -2,10 +2,10 @@
 
 namespace App\Jobs\Com\User;
 
+use Adldap\Models\User;
+use App\Jobs\Job;
 use COM;
 use COM_EXCEPTION;
-use App\Jobs\Job;
-use Adldap\Models\User;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class ChangePassword extends Job implements SelfHandling
@@ -85,10 +85,10 @@ class ChangePassword extends Job implements SelfHandling
 
         $config = config('adldap.connection_settings', $default);
 
-        $this->server               = $config['domain_controllers'][0];
-        $this->adminUsername        = $config['admin_username'];
-        $this->adminPassword        = $config['admin_password'];
-        $this->adminAccountSuffix   = $config['account_suffix'];
+        $this->server = $config['domain_controllers'][0];
+        $this->adminUsername = $config['admin_username'];
+        $this->adminPassword = $config['admin_password'];
+        $this->adminAccountSuffix = $config['account_suffix'];
     }
 
     /**

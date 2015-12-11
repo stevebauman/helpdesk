@@ -46,7 +46,9 @@ trait CanEncryptTrait
      */
     protected function newEncrypter($key = null)
     {
-        if (is_null($key)) $key = $this->getEncryptionKey();
+        if (is_null($key)) {
+            $key = $this->getEncryptionKey();
+        }
 
         return new Encrypter($key, 'AES-256-CBC');
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Presenters;
 
-use Orchestra\Contracts\Html\Form\Fieldset;
-use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use App\Models\Comment;
 use App\Models\Issue;
+use Orchestra\Contracts\Html\Form\Fieldset;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 
 class IssueCommentPresenter extends Presenter
 {
@@ -19,8 +19,7 @@ class IssueCommentPresenter extends Presenter
      */
     public function form(Issue $issue, Comment $comment)
     {
-        return $this->form->of('issue.comment', function (FormGrid $form) use ($issue, $comment)
-        {
+        return $this->form->of('issue.comment', function (FormGrid $form) use ($issue, $comment) {
             // Check if the issue already has a resolution
             $hasResolution = $issue->findCommentResolution();
 
@@ -41,14 +40,13 @@ class IssueCommentPresenter extends Presenter
             $form->setup($this, $url, $comment, $attributes);
 
             // Setup the form fieldset
-            $form->fieldset(function (Fieldset $fieldset) use ($comment, $hasResolution)
-            {
+            $form->fieldset(function (Fieldset $fieldset) use ($comment, $hasResolution) {
                 $fieldset->control('input:textarea', 'content')
                     ->label('Comment')
                     ->attributes([
-                        'placeholder' => 'Leave a comment',
+                        'placeholder'  => 'Leave a comment',
                         'data-provide' => 'markdown',
-                        'id' => 'comment',
+                        'id'           => 'comment',
                     ]);
 
                 $isResolution = $comment->isResolution();
@@ -59,7 +57,7 @@ class IssueCommentPresenter extends Presenter
                     $fieldset->control('input:checkbox', 'Mark as Resolution')
                         ->attributes([
                             'class' => 'switch-mark',
-                            ($isResolution ? 'checked' : null)
+                            ($isResolution ? 'checked' : null),
                         ])
                         ->name('resolution')
                         ->value(1);

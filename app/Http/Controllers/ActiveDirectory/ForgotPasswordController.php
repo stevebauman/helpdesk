@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\ActiveDirectory;
 
-use Illuminate\Contracts\View\View;
-use App\Processors\ActiveDirectory\ForgotPasswordProcessor;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ActiveDirectory\ForgotPassword\DiscoverRequest;
 use App\Http\Requests\ActiveDirectory\ForgotPassword\PasswordRequest;
 use App\Http\Requests\ActiveDirectory\ForgotPassword\QuestionRequest;
-use App\Http\Requests\ActiveDirectory\ForgotPassword\DiscoverRequest;
-use App\Http\Controllers\Controller;
+use App\Processors\ActiveDirectory\ForgotPasswordProcessor;
+use Illuminate\Contracts\View\View;
 
 class ForgotPasswordController extends Controller
 {
@@ -94,7 +94,7 @@ class ForgotPasswordController extends Controller
             return redirect()->route('auth.forgot-password.reset', [$reset]);
         }
 
-        $message = "Hmmm, it looks there was an issue with one of your answers. Try again!";
+        $message = 'Hmmm, it looks there was an issue with one of your answers. Try again!';
 
         flash()->error('Error', $message);
 

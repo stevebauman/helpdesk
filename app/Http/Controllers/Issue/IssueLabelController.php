@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Issue;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\IssueLabelRequest;
 use App\Processors\IssueLabelProcessor;
-use App\Http\Controllers\Controller;
 
 class IssueLabelController extends Controller
 {
@@ -33,7 +33,7 @@ class IssueLabelController extends Controller
      */
     public function store(IssueLabelRequest $request, $id)
     {
-        if($this->processor->store($request, $id)) {
+        if ($this->processor->store($request, $id)) {
             flash()->success('Success!', 'Successfully updated labels for this issue.');
 
             return redirect()->route('issues.show', [$id]);
